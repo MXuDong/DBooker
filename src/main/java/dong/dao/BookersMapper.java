@@ -2,7 +2,13 @@ package dong.dao;
 
 import dong.model.Bookers;
 
+import java.awt.print.Book;
+import java.util.List;
+
 public interface BookersMapper {
+
+    List<Bookers> findAll();
+
     int deleteByPrimaryKey(Integer bookerId);
 
     int insert(Bookers record);

@@ -1,88 +1,48 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="dong.dao.ConnectionMapper">
-  <resultMap id="BaseResultMap" type="dong.model.Connection">
-    <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="phone_number" jdbcType="CHAR" property="phoneNumber" />
-    <result column="QQ_number" jdbcType="CHAR" property="qqNumber" />
-    <result column="Email" jdbcType="CHAR" property="email" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dong.dao.ConnectionMapper" >
+  <resultMap id="BaseResultMap" type="dong.model.Connection" >
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="phone_number" property="phoneNumber" jdbcType="CHAR" />
+    <result column="QQ_number" property="qqNumber" jdbcType="CHAR" />
+    <result column="Email" property="email" jdbcType="CHAR" />
   </resultMap>
-  <insert id="insert" parameterType="dong.model.Connection">
+  <select id="findByUserId" resultMap="BaseResultMap" parameterType="INTEGER">
+    SELECT * from t_connection WHERE user_id = #{userId};
+  </select>
+  <insert id="insert" parameterType="dong.model.Connection" >
     insert into t_connection (user_id, phone_number, QQ_number, 
       Email)
     values (#{userId,jdbcType=INTEGER}, #{phoneNumber,jdbcType=CHAR}, #{qqNumber,jdbcType=CHAR}, 
       #{email,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="dong.model.Connection">
+  <insert id="insertSelective" parameterType="dong.model.Connection" >
     insert into t_connection
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
         user_id,
       </if>
-      <if test="phoneNumber != null">
+      <if test="phoneNumber != null" >
         phone_number,
       </if>
-      <if test="qqNumber != null">
+      <if test="qqNumber != null" >
         QQ_number,
       </if>
-      <if test="email != null">
+      <if test="email != null" >
         Email,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
         #{userId,jdbcType=INTEGER},
       </if>
-      <if test="phoneNumber != null">
+      <if test="phoneNumber != null" >
         #{phoneNumber,jdbcType=CHAR},
       </if>
-      <if test="qqNumber != null">
+      <if test="qqNumber != null" >
         #{qqNumber,jdbcType=CHAR},
       </if>
-      <if test="email != null">
-        #{email,jdbcType=CHAR},
-      </if>
-    </trim>
-  </insert>
-  <resultMap id="BaseResultMap" type="dong.model.Connection">
-    <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="phone_number" jdbcType="CHAR" property="phoneNumber" />
-    <result column="QQ_number" jdbcType="CHAR" property="qqNumber" />
-    <result column="Email" jdbcType="CHAR" property="email" />
-  </resultMap>
-  <insert id="insert" parameterType="dong.model.Connection">
-    insert into t_connection (user_id, phone_number, QQ_number, 
-      Email)
-    values (#{userId,jdbcType=INTEGER}, #{phoneNumber,jdbcType=CHAR}, #{qqNumber,jdbcType=CHAR}, 
-      #{email,jdbcType=CHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="dong.model.Connection">
-    insert into t_connection
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        user_id,
-      </if>
-      <if test="phoneNumber != null">
-        phone_number,
-      </if>
-      <if test="qqNumber != null">
-        QQ_number,
-      </if>
-      <if test="email != null">
-        Email,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="phoneNumber != null">
-        #{phoneNumber,jdbcType=CHAR},
-      </if>
-      <if test="qqNumber != null">
-        #{qqNumber,jdbcType=CHAR},
-      </if>
-      <if test="email != null">
+      <if test="email != null" >
         #{email,jdbcType=CHAR},
       </if>
     </trim>

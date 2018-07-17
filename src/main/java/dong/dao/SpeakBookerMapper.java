@@ -2,7 +2,12 @@ package dong.dao;
 
 import dong.model.SpeakBooker;
 
+import java.util.List;
+
 public interface SpeakBookerMapper {
+
+    List<SpeakBooker> findAllByBookerId(int bookerId);
+
     int deleteByPrimaryKey(Integer speakId);
 
     int insert(SpeakBooker record);
