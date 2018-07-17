@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dong.dao.BookersMapper">
+  <resultMap id="BaseResultMap" type="dong.model.Bookers">
+    <id column="booker_id" jdbcType="INTEGER" property="bookerId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="booker_head" jdbcType="VARCHAR" property="bookerHead" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="dong.model.Bookers">
+    <result column="booker_info" jdbcType="LONGVARCHAR" property="bookerInfo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    booker_id, user_id, create_time, booker_head
+  </sql>
+  <sql id="Blob_Column_List">
+    booker_info
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_bookers
+    where booker_id = #{bookerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_bookers
+    where booker_id = #{bookerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="dong.model.Bookers">
+    insert into t_bookers (booker_id, user_id, create_time, 
+      booker_head, booker_info)
+    values (#{bookerId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{bookerHead,jdbcType=VARCHAR}, #{bookerInfo,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="dong.model.Bookers">
+    insert into t_bookers
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bookerId != null">
+        booker_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="bookerHead != null">
+        booker_head,
+      </if>
+      <if test="bookerInfo != null">
+        booker_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bookerId != null">
+        #{bookerId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookerHead != null">
+        #{bookerHead,jdbcType=VARCHAR},
+      </if>
+      <if test="bookerInfo != null">
+        #{bookerInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="dong.model.Bookers">
+    update t_bookers
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookerHead != null">
+        booker_head = #{bookerHead,jdbcType=VARCHAR},
+      </if>
+      <if test="bookerInfo != null">
+        booker_info = #{bookerInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where booker_id = #{bookerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="dong.model.Bookers">
+    update t_bookers
+    set user_id = #{userId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      booker_head = #{bookerHead,jdbcType=VARCHAR},
+      booker_info = #{bookerInfo,jdbcType=LONGVARCHAR}
+    where booker_id = #{bookerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="dong.model.Bookers">
+    update t_bookers
+    set user_id = #{userId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      booker_head = #{bookerHead,jdbcType=VARCHAR}
+    where booker_id = #{bookerId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="dong.model.Bookers">
+    <id column="booker_id" jdbcType="INTEGER" property="bookerId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="booker_head" jdbcType="VARCHAR" property="bookerHead" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="dong.model.Bookers">
+    <result column="booker_info" jdbcType="LONGVARCHAR" property="bookerInfo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    booker_id, user_id, create_time, booker_head
+  </sql>
+  <sql id="Blob_Column_List">
+    booker_info
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_bookers
+    where booker_id = #{bookerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_bookers
+    where booker_id = #{bookerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="dong.model.Bookers">
+    insert into t_bookers (booker_id, user_id, create_time, 
+      booker_head, booker_info)
+    values (#{bookerId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{bookerHead,jdbcType=VARCHAR}, #{bookerInfo,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="dong.model.Bookers">
+    insert into t_bookers
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bookerId != null">
+        booker_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="bookerHead != null">
+        booker_head,
+      </if>
+      <if test="bookerInfo != null">
+        booker_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bookerId != null">
+        #{bookerId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookerHead != null">
+        #{bookerHead,jdbcType=VARCHAR},
+      </if>
+      <if test="bookerInfo != null">
+        #{bookerInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="dong.model.Bookers">
+    update t_bookers
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookerHead != null">
+        booker_head = #{bookerHead,jdbcType=VARCHAR},
+      </if>
+      <if test="bookerInfo != null">
+        booker_info = #{bookerInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where booker_id = #{bookerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="dong.model.Bookers">
+    update t_bookers
+    set user_id = #{userId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      booker_head = #{bookerHead,jdbcType=VARCHAR},
+      booker_info = #{bookerInfo,jdbcType=LONGVARCHAR}
+    where booker_id = #{bookerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="dong.model.Bookers">
+    update t_bookers
+    set user_id = #{userId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      booker_head = #{bookerHead,jdbcType=VARCHAR}
+    where booker_id = #{bookerId,jdbcType=INTEGER}
+  </update>
+</mapper>
