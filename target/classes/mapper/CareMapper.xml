@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dong.dao.CareMapper" >
+  <resultMap id="BaseResultMap" type="dong.model.Care" >
+    <id column="care_id" property="careId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="booker_id" property="bookerId" jdbcType="INTEGER" />
+    <result column="care_time" property="careTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    care_id, user_id, booker_id, care_time
+  </sql>
+  <select id="findAllByUserId" parameterType="INTEGER" resultMap="BaseResultMap">
+    select * from t_care WHERE user_id = #{userId};
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_care
+    where care_id = #{careId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_care
+    where care_id = #{careId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="dong.model.Care" >
+    insert into t_care (care_id, user_id, booker_id, 
+      care_time)
+    values (#{careId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{bookerId,jdbcType=INTEGER}, 
+      #{careTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="dong.model.Care" >
+    insert into t_care
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="careId != null" >
+        care_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="bookerId != null" >
+        booker_id,
+      </if>
+      <if test="careTime != null" >
+        care_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="careId != null" >
+        #{careId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="bookerId != null" >
+        #{bookerId,jdbcType=INTEGER},
+      </if>
+      <if test="careTime != null" >
+        #{careTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="dong.model.Care" >
+    update t_care
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="bookerId != null" >
+        booker_id = #{bookerId,jdbcType=INTEGER},
+      </if>
+      <if test="careTime != null" >
+        care_time = #{careTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where care_id = #{careId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="dong.model.Care" >
+    update t_care
+    set user_id = #{userId,jdbcType=INTEGER},
+      booker_id = #{bookerId,jdbcType=INTEGER},
+      care_time = #{careTime,jdbcType=TIMESTAMP}
+    where care_id = #{careId,jdbcType=INTEGER}
+  </update>
+</mapper>

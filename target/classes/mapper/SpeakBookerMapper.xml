@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dong.dao.SpeakBookerMapper" >
+  <resultMap id="BaseResultMap" type="dong.model.SpeakBooker" >
+    <id column="speak_id" property="speakId" jdbcType="INTEGER" />
+    <result column="booker_id" property="bookerId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="speak_time" property="speakTime" jdbcType="TIMESTAMP" />
+    <result column="speak_info" property="speakInfo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    speak_id, booker_id, user_id, speak_time, speak_info
+  </sql>
+  <select id="findAllByBookerId" resultMap="BaseResultMap" parameterType="INTEGER">
+    SELECT * from t_speak_booker WHERE booker_id = #{bookerId}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_speak_booker
+    where speak_id = #{speakId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_speak_booker
+    where speak_id = #{speakId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="dong.model.SpeakBooker" >
+    insert into t_speak_booker (speak_id, booker_id, user_id, 
+      speak_time, speak_info)
+    values (#{speakId,jdbcType=INTEGER}, #{bookerId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{speakTime,jdbcType=TIMESTAMP}, #{speakInfo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="dong.model.SpeakBooker" >
+    insert into t_speak_booker
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="speakId != null" >
+        speak_id,
+      </if>
+      <if test="bookerId != null" >
+        booker_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="speakTime != null" >
+        speak_time,
+      </if>
+      <if test="speakInfo != null" >
+        speak_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="speakId != null" >
+        #{speakId,jdbcType=INTEGER},
+      </if>
+      <if test="bookerId != null" >
+        #{bookerId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="speakTime != null" >
+        #{speakTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="speakInfo != null" >
+        #{speakInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="dong.model.SpeakBooker" >
+    update t_speak_booker
+    <set >
+      <if test="bookerId != null" >
+        booker_id = #{bookerId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="speakTime != null" >
+        speak_time = #{speakTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="speakInfo != null" >
+        speak_info = #{speakInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where speak_id = #{speakId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="dong.model.SpeakBooker" >
+    update t_speak_booker
+    set booker_id = #{bookerId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      speak_time = #{speakTime,jdbcType=TIMESTAMP},
+      speak_info = #{speakInfo,jdbcType=VARCHAR}
+    where speak_id = #{speakId,jdbcType=INTEGER}
+  </update>
+</mapper>
