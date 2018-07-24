@@ -11,7 +11,7 @@ public interface BookerService {
     //创造博客
     boolean createBooker(Bookers bookers);
     //删除博客
-    boolean deleteBooker(Bookers bookers);
+    boolean deleteBooker(int bookerId);
     //修改博客
     boolean updateBooker(Bookers bookers);
     //查找作者
