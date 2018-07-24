@@ -89,4 +89,10 @@ public class UserServiceImpl implements UserServiceI {
         int res = userMapper.updateByPrimaryKey(user);
         return res == 1;
     }
+
+    @Override
+    public boolean createConnection(Connection connection) {
+        int res = connectionMapper.insertSelective(connection);
+        return res == 1;
+    }
 }

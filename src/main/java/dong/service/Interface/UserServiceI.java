@@ -26,5 +26,7 @@ public interface UserServiceI {
     boolean updateUserInformation(User user);
     //获取某位用户的Connection
     Connection getConnectionByUser(User user);
+    //创建某位用户的Connection
+    boolean createConnection(Connection connection);
 
 }

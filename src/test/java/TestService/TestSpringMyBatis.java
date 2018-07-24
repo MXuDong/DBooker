@@ -23,10 +23,14 @@ public class TestSpringMyBatis {
         System.out.println(serviceI.userCanLoginIn("mxd", "233333"));
     }
 
+    @Test
     public void TestRegister(){
         User user = new User();
         user.setUserName("weimingqi");
         user.setUserPassword("213");
         user.setUserSex("M");
+        user.setUserTrueName("为名气");
+        user.setUserSign("23423423");
+        System.out.println(serviceI.registerUser(user));
     }
 }
