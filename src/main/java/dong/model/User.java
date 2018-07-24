@@ -70,4 +70,17 @@ public class User {
     public void setUserDisc(String userDisc) {
         this.userDisc = userDisc == null ? null : userDisc.trim();
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                ", userSex='" + userSex + '\'' +
+                ", userTrueName='" + userTrueName + '\'' +
+                ", userSign='" + userSign + '\'' +
+                ", userDisc='" + userDisc + '\'' +
+                '}';
+    }
 }
