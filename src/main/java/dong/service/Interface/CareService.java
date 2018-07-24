@@ -8,7 +8,7 @@ public interface CareService {
 //    添加收藏
     boolean createCare(Care care);
 //    取消收藏
-    boolean deleteCare(Care care);
+    boolean deleteCare(int careId);
 //    查看关注人
     User getCareUser(Care care);
 //    查看被关注博客
