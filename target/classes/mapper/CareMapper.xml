@@ -10,8 +10,8 @@
   <sql id="Base_Column_List" >
     care_id, user_id, booker_id, care_time
   </sql>
-  <select id="findAllByUserId" parameterType="INTEGER" resultMap="BaseResultMap">
-    select * from t_care WHERE user_id = #{userId};
+  <select id="findAllByUserId" parameterType="INTEGER" resultType="INTEGER">
+    select care_id from t_care WHERE user_id = #{userId};
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 

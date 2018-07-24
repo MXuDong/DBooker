@@ -1,4 +1,4 @@
-package dong.service;
+package dong.service.Impl;
 
 import dong.dao.CareMapper;
 import dong.dao.ConnectionMapper;
@@ -7,10 +7,10 @@ import dong.dao.UserMapper;
 import dong.model.Connection;
 import dong.model.Follow;
 import dong.model.User;
+import dong.service.Interface.UserServiceI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service("userService")
