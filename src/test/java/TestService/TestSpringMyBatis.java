@@ -1,5 +1,6 @@
 package TestService;
 
+import dong.model.User;
 import dong.service.Interface.UserServiceI;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +19,14 @@ public class TestSpringMyBatis {
     }
 
     @Test
-    public void TestUserServiceImpl(){
+    public void UserLogin(){
         System.out.println(serviceI.userCanLoginIn("mxd", "233333"));
+    }
+
+    public void TestRegister(){
+        User user = new User();
+        user.setUserName("weimingqi");
+        user.setUserPassword("213");
+        user.setUserSex("M");
     }
 }
