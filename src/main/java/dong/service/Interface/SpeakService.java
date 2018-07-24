@@ -9,7 +9,7 @@ public interface SpeakService {
 //    添加评论
     boolean createSpeak(SpeakBooker speakBooker);
 //    取消评论
-    boolean deleteSpeak(SpeakBooker speakBooker);
+    boolean deleteSpeak(int speakBookerId);
 //    修改评论
     boolean updateSpeakBooker(SpeakBooker speakBooker);
 //    根据Booker查找所有评论
