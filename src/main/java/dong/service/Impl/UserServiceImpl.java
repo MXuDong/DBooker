@@ -17,6 +17,31 @@ import java.util.List;
 public class UserServiceImpl implements UserServiceI {
 
     private UserMapper userMapper;
+
+    public CareMapper getCareMapper() {
+        return careMapper;
+    }
+
+    public void setCareMapper(CareMapper careMapper) {
+        this.careMapper = careMapper;
+    }
+
+    public FollowMapper getFollowMapper() {
+        return followMapper;
+    }
+
+    public void setFollowMapper(FollowMapper followMapper) {
+        this.followMapper = followMapper;
+    }
+
+    public ConnectionMapper getConnectionMapper() {
+        return connectionMapper;
+    }
+
+    public void setConnectionMapper(ConnectionMapper connectionMapper) {
+        this.connectionMapper = connectionMapper;
+    }
+
     private CareMapper careMapper;
     private FollowMapper followMapper;
     private ConnectionMapper connectionMapper;
