@@ -15,17 +15,17 @@ public interface UserServiceI {
     //通过ID查找User，不存在时返回null
     User findUserById(int userId);
     //通过userName查找user， 不存在时返回null
-    User getUserByUserName(String userName);
+    User findUserByUserName(String userName);
     //查找某位用户的收藏的Booker
-    List<Integer> getBookerIdFromUserCare(User user);
+    List<Integer> findBookerIdFromUserCare(User user);
     //查找某位用户的关注
-    List<Follow> getUserFollowBookerId(User user);
+    List<Follow> findUserFollowBookerId(User user);
     //注册
     boolean registerUser(User user);
     //登陆
     boolean updateUserInformation(User user);
     //获取某位用户的Connection
-    Connection getConnectionByUser(User user);
+    Connection findConnectionByUser(User user);
     //创建某位用户的Connection
     boolean createConnection(Connection connection);
 

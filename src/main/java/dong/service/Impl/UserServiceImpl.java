@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserServiceI {
     }
 
     @Override
-    public User getUserByUserName(String userName) {
+    public User findUserByUserName(String userName) {
         List<User> users = userMapper.findAll();
         for(User u : users){
             if(u.getUserName().equals(userName)) return u;
@@ -61,19 +61,19 @@ public class UserServiceImpl implements UserServiceI {
     }
 
     @Override
-    public List<Integer> getBookerIdFromUserCare(User user) {
+    public List<Integer> findBookerIdFromUserCare(User user) {
         List<Integer> res = careMapper.findAllByUserId(user.getUserId());
         return res;
     }
 
     @Override
-    public Connection getConnectionByUser(User user) {
+    public Connection findConnectionByUser(User user) {
         Connection c = connectionMapper.findByUserId(user.getUserId());
         return c;
     }
 
     @Override
-    public List<Follow> getUserFollowBookerId(User user) {
+    public List<Follow> findUserFollowBookerId(User user) {
         List<Follow> res = followMapper.findAllByUserId(user.getUserId());
         return res;
     }
