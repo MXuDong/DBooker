@@ -95,4 +95,10 @@ public class UserServiceImpl implements UserServiceI {
         int res = connectionMapper.insertSelective(connection);
         return res == 1;
     }
+
+    @Override
+    public boolean changePassword(User user) {
+        int res = userMapper.updateByPrimaryKeySelective(user);
+        return res == 1;
+    }
 }
