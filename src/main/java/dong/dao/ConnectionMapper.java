@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ConnectionMapper {
 
-    List<Connection> findByUserId(int userId);
+    Connection findByUserId(int userId);
 
     int insert(Connection record);
 
