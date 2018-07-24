@@ -7,7 +7,7 @@ public interface FollowService {
 //    添加关注
     boolean createFollow(Follow follow);
 //    取消关注
-    boolean deleteFollow(Follow follow);
+    boolean deleteFollow(int followId);
 //    查看关注者
     User findFollowUser(Follow follow);
 //    查看被关注者
