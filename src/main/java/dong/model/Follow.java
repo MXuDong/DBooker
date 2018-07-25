@@ -30,4 +30,13 @@ public class Follow {
     public void setBeFollowUserId(Integer beFollowUserId) {
         this.beFollowUserId = beFollowUserId;
     }
+
+    @Override
+    public String toString() {
+        return "Follow{" +
+                "followId=" + followId +
+                ", userId=" + userId +
+                ", beFollowUserId=" + beFollowUserId +
+                '}';
+    }
 }

@@ -12,6 +12,9 @@
   <select id="findAllByUserId" resultMap="BaseResultMap" parameterType="INTEGER">
     SELECT * FROM t_follow WHERE user_id = #{userId};
   </select>
+  <select id="findAllByBeFollowUserId" resultMap="BaseResultMap" parameterType="INTEGER">
+    SELECT * FROM t_follow WHERE be_follow_user_id = #{beFollowUserId};
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

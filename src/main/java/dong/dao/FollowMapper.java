@@ -5,6 +5,7 @@ import dong.model.Follow;
 import java.util.List;
 
 public interface FollowMapper {
+    List<Follow> findAllByBeFollowUserId(int beFollowUserId);
 
     List<Follow> findAllByUserId(int userId);
 

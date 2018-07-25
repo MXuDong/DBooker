@@ -5,13 +5,34 @@ import dong.dao.UserMapper;
 import dong.model.Follow;
 import dong.model.User;
 import dong.service.Interface.FollowService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service("followService")
 public class FollowServiceImpl implements FollowService {
 
     private UserMapper userMapper;
     private FollowMapper followMapper;
+
+    public UserMapper getUserMapper() {
+        return userMapper;
+    }
+
+    @Autowired
+    public void setUserMapper(UserMapper userMapper) {
+        this.userMapper = userMapper;
+    }
+
+    public FollowMapper getFollowMapper() {
+        return followMapper;
+    }
+
+    @Autowired
+    public void setFollowMapper(FollowMapper followMapper) {
+        this.followMapper = followMapper;
+    }
 
     @Override
     public boolean createFollow(Follow follow) {
@@ -26,12 +47,32 @@ public class FollowServiceImpl implements FollowService {
     }
 
     @Override
-    public User findFollowUser(Follow follow) {
+    public User findFollowUser(int followId) {
+        Follow follow = findByFollowId(followId);
         return userMapper.selectByPrimaryKey(follow.getUserId());
     }
 
     @Override
-    public User findFollowedUser(Follow follow) {
+    public User findFollowedUser(int followId) {
+        Follow follow = findByFollowId(followId);
         return userMapper.selectByPrimaryKey(follow.getBeFollowUserId());
+    }
+
+    @Override
+    public List<Follow> findAllByFollowUser(int userId) {
+        List<Follow> res = followMapper.findAllByUserId(userId);
+        return res;
+    }
+
+    @Override
+    public List<Follow> findAllByBeFollowedUser(int userId) {
+        List<Follow> res = followMapper.findAllByBeFollowUserId(userId);
+        return res;
+    }
+
+    @Override
+    public Follow findByFollowId(int followId) {
+        Follow follow = followMapper.selectByPrimaryKey(followId);
+        return follow;
     }
 }
