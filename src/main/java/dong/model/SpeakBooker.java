@@ -52,4 +52,15 @@ public class SpeakBooker {
     public void setSpeakInfo(String speakInfo) {
         this.speakInfo = speakInfo == null ? null : speakInfo.trim();
     }
+
+    @Override
+    public String toString() {
+        return "SpeakBooker{" +
+                "speakId=" + speakId +
+                ", bookerId=" + bookerId +
+                ", userId=" + userId +
+                ", speakTime=" + speakTime +
+                ", speakInfo='" + speakInfo + '\'' +
+                '}';
+    }
 }

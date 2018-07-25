@@ -15,5 +15,7 @@ public interface SpeakService {
 //    根据Booker查找所有评论
     List<SpeakBooker> findAllByBookerId(int bookerId);
 //    查找评论的用户ＩＤ
-    User findUserBySpeak(SpeakBooker speakBooker);
+    User findUserBySpeak(int speakBookerId);
+//    根据Speak ID查找Speak
+    SpeakBooker findById(int SpeakBookerId);
 }

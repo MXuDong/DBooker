@@ -5,6 +5,7 @@ import dong.dao.UserMapper;
 import dong.model.SpeakBooker;
 import dong.model.User;
 import dong.service.Interface.SpeakService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +15,24 @@ public class SpeakServiceImpl implements SpeakService {
 
     private SpeakBookerMapper speakBookerMapper;
     private UserMapper userMapper;
+
+    public SpeakBookerMapper getSpeakBookerMapper() {
+        return speakBookerMapper;
+    }
+
+    @Autowired
+    public void setSpeakBookerMapper(SpeakBookerMapper speakBookerMapper) {
+        this.speakBookerMapper = speakBookerMapper;
+    }
+
+    public UserMapper getUserMapper() {
+        return userMapper;
+    }
+
+    @Autowired
+    public void setUserMapper(UserMapper userMapper) {
+        this.userMapper = userMapper;
+    }
 
     @Override
     public boolean createSpeak(SpeakBooker speakBooker) {
@@ -40,7 +59,13 @@ public class SpeakServiceImpl implements SpeakService {
     }
 
     @Override
-    public User findUserBySpeak(SpeakBooker speakBooker) {
-        return userMapper.selectByPrimaryKey(speakBooker.getUserId());
+    public User findUserBySpeak(int speakBookerId) {
+        return userMapper.selectByPrimaryKey(findById(speakBookerId).getUserId());
+    }
+
+    @Override
+    public SpeakBooker findById(int SpeakBookerId) {
+        SpeakBooker speakBooker = speakBookerMapper.selectByPrimaryKey(SpeakBookerId);
+        return speakBooker;
     }
 }
