@@ -1,9 +1,6 @@
 package dong.service.Interface;
 
-import dong.model.Bookers;
-import dong.model.Connection;
-import dong.model.Follow;
-import dong.model.User;
+import dong.model.*;
 
 import java.awt.print.Book;
 import java.util.ArrayList;
@@ -16,10 +13,6 @@ public interface UserServiceI {
     User findUserById(int userId);
     //通过userName查找user， 不存在时返回null
     User findUserByUserName(String userName);
-    //查找某位用户的收藏的Booker
-    List<Integer> findBookerIdFromUserCare(User user);
-    //查找某位用户的关注
-    List<Follow> findUserFollowBookerId(User user);
     //注册
     boolean registerUser(User user);
     //登陆

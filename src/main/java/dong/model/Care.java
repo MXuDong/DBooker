@@ -42,4 +42,14 @@ public class Care {
     public void setCareTime(Date careTime) {
         this.careTime = careTime;
     }
+
+    @Override
+    public String toString() {
+        return "Care{" +
+                "careId=" + careId +
+                ", userId=" + userId +
+                ", bookerId=" + bookerId +
+                ", careTime=" + careTime +
+                '}';
+    }
 }

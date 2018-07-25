@@ -1,5 +1,6 @@
 package TestService;
 
+import dong.model.Care;
 import dong.model.User;
 import dong.service.Interface.UserServiceI;
 import org.junit.Before;

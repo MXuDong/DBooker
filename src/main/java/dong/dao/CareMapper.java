@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CareMapper {
 
-    List<Integer> findAllByUserId(int userId);
+    List<Care> findAllByUserId(int userId);
 
     int deleteByPrimaryKey(Integer careId);
 

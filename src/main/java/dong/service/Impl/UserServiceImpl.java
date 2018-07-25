@@ -4,6 +4,7 @@ import dong.dao.CareMapper;
 import dong.dao.ConnectionMapper;
 import dong.dao.FollowMapper;
 import dong.dao.UserMapper;
+import dong.model.Care;
 import dong.model.Connection;
 import dong.model.Follow;
 import dong.model.User;
@@ -87,22 +88,11 @@ public class UserServiceImpl implements UserServiceI {
         return null;
     }
 
-    @Override
-    public List<Integer> findBookerIdFromUserCare(User user) {
-        List<Integer> res = careMapper.findAllByUserId(user.getUserId());
-        return res;
-    }
 
     @Override
     public Connection findConnectionByUser(User user) {
         Connection c = connectionMapper.findByUserId(user.getUserId());
         return c;
-    }
-
-    @Override
-    public List<Follow> findUserFollowBookerId(User user) {
-        List<Follow> res = followMapper.findAllByUserId(user.getUserId());
-        return res;
     }
 
     @Override

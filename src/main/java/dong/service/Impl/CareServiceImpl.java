@@ -7,7 +7,10 @@ import dong.model.Bookers;
 import dong.model.Care;
 import dong.model.User;
 import dong.service.Interface.CareService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service("careService")
 public class CareServiceImpl implements CareService {
@@ -15,6 +18,33 @@ public class CareServiceImpl implements CareService {
     private CareMapper careMapper;
     private UserMapper userMapper;
     private BookersMapper bookersMapper;
+
+    public CareMapper getCareMapper() {
+        return careMapper;
+    }
+
+    @Autowired
+    public void setCareMapper(CareMapper careMapper) {
+        this.careMapper = careMapper;
+    }
+
+    public UserMapper getUserMapper() {
+        return userMapper;
+    }
+
+    @Autowired
+    public void setUserMapper(UserMapper userMapper) {
+        this.userMapper = userMapper;
+    }
+
+    public BookersMapper getBookersMapper() {
+        return bookersMapper;
+    }
+
+    @Autowired
+    public void setBookersMapper(BookersMapper bookersMapper) {
+        this.bookersMapper = bookersMapper;
+    }
 
     @Override
     public boolean createCare(Care care) {
@@ -29,36 +59,26 @@ public class CareServiceImpl implements CareService {
     }
 
     @Override
-    public User getCareUser(Care care) {
+    public User findCareUser(int careId) {
+        Care care = findCareById(careId);
         return userMapper.selectByPrimaryKey(care.getUserId());
     }
 
     @Override
-    public Bookers getBeCaredBooker(Care care) {
+    public Bookers findBeCaredBooker(int careId) {
+        Care care = findCareById(careId);
         return bookersMapper.selectByPrimaryKey(care.getBookerId());
     }
 
-    public CareMapper getCareMapper() {
-        return careMapper;
+    @Override
+    public List<Care> findAllCaresByUserId(int UserId) {
+        List<Care> res = careMapper.findAllByUserId(UserId);
+        return res;
     }
 
-    public void setCareMapper(CareMapper careMapper) {
-        this.careMapper = careMapper;
-    }
-
-    public UserMapper getUserMapper() {
-        return userMapper;
-    }
-
-    public void setUserMapper(UserMapper userMapper) {
-        this.userMapper = userMapper;
-    }
-
-    public BookersMapper getBookersMapper() {
-        return bookersMapper;
-    }
-
-    public void setBookersMapper(BookersMapper bookersMapper) {
-        this.bookersMapper = bookersMapper;
+    @Override
+    public Care findCareById(int careId) {
+        Care care = careMapper.selectByPrimaryKey(careId);
+        return care;
     }
 }
