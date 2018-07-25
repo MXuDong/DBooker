@@ -31,8 +31,7 @@ public class TestSpeak {
         System.out.println(ss.createSpeak(speakBooker));
     }
 
-    @Test
-    public void TestDeleteSpeak(){
+    @Test    public void TestDeleteSpeak(){
         System.out.println(ss.deleteSpeak(3));
     }
 
