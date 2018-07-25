@@ -52,4 +52,15 @@ public class Bookers {
     public void setBookerInfo(String bookerInfo) {
         this.bookerInfo = bookerInfo == null ? null : bookerInfo.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Bookers{" +
+                "bookerId=" + bookerId +
+                ", userId=" + userId +
+                ", createTime=" + createTime +
+                ", bookerHead='" + bookerHead + '\'' +
+                ", bookerInfo='" + bookerInfo + '\'' +
+                '}';
+    }
 }

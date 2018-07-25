@@ -104,7 +104,8 @@
     update t_bookers
     set user_id = #{userId,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      booker_head = #{bookerHead,jdbcType=VARCHAR}
+      booker_head = #{bookerHead,jdbcType=VARCHAR},
+      booker_info = #{bookerInfo,jdbcType=LONGVARCHAR}
     where booker_id = #{bookerId,jdbcType=INTEGER}
   </update>
 </mapper>

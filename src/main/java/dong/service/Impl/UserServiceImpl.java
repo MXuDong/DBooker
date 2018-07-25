@@ -17,11 +17,15 @@ import java.util.List;
 public class UserServiceImpl implements UserServiceI {
 
     private UserMapper userMapper;
+    private CareMapper careMapper;
+    private FollowMapper followMapper;
+    private ConnectionMapper connectionMapper;
 
     public CareMapper getCareMapper() {
         return careMapper;
     }
 
+    @Autowired
     public void setCareMapper(CareMapper careMapper) {
         this.careMapper = careMapper;
     }
@@ -30,6 +34,7 @@ public class UserServiceImpl implements UserServiceI {
         return followMapper;
     }
 
+    @Autowired
     public void setFollowMapper(FollowMapper followMapper) {
         this.followMapper = followMapper;
     }
@@ -38,13 +43,10 @@ public class UserServiceImpl implements UserServiceI {
         return connectionMapper;
     }
 
+    @Autowired
     public void setConnectionMapper(ConnectionMapper connectionMapper) {
         this.connectionMapper = connectionMapper;
     }
-
-    private CareMapper careMapper;
-    private FollowMapper followMapper;
-    private ConnectionMapper connectionMapper;
 
     public UserMapper getUserMapper() {
         return userMapper;

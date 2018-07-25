@@ -4,6 +4,7 @@ import dong.model.Bookers;
 import dong.model.User;
 
 import java.awt.print.Book;
+import java.util.List;
 
 public interface BookerService {
     //通过博客ID查找博客
@@ -15,5 +16,7 @@ public interface BookerService {
     //修改博客
     boolean updateBooker(Bookers bookers);
     //查找作者
-    User findAuthorId(Bookers bookers);
+    User findAuthor(int bookersId);
+    //通过作者ID查找某位作者的全部Booker
+    List<Bookers> findBookersByUserId(int userId);
 }

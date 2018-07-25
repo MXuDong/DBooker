@@ -5,7 +5,12 @@ import dong.dao.UserMapper;
 import dong.model.Bookers;
 import dong.model.User;
 import dong.service.Interface.BookerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 @Service("bookerService")
 public class BookerServiceImpl implements BookerService {
@@ -36,8 +41,8 @@ public class BookerServiceImpl implements BookerService {
     }
 
     @Override
-    public User findAuthorId(Bookers bookers) {
-        return userMapper.selectByPrimaryKey(bookers.getUserId());
+    public User findAuthor(int bookersId) {
+        return userMapper.selectByPrimaryKey(bookersId);
 
     }
 
@@ -45,6 +50,7 @@ public class BookerServiceImpl implements BookerService {
         return bookersMapper;
     }
 
+    @Autowired
     public void setBookersMapper(BookersMapper bookersMapper) {
         this.bookersMapper = bookersMapper;
     }
@@ -53,7 +59,25 @@ public class BookerServiceImpl implements BookerService {
         return userMapper;
     }
 
+    @Autowired
     public void setUserMapper(UserMapper userMapper) {
         this.userMapper = userMapper;
+    }
+
+    @Override
+    public List<Bookers> findBookersByUserId(int userId) {
+        List<Bookers> tmp = bookersMapper.findAll();
+        List<Bookers> res = new ArrayList<Bookers>();
+
+        Iterator<Bookers> iterator = tmp.iterator();
+
+        while(iterator.hasNext()){
+            Bookers b = iterator.next();
+            if(b.getUserId() == userId){
+                res.add(b);
+            }
+        }
+
+        return res;
     }
 }
