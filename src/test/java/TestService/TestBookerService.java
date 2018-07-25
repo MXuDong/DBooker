@@ -34,7 +34,7 @@ public class TestBookerService {
 
     @Test
     public void TestDeleteBooker(){
-        System.out.println(bs.deleteBooker(3));
+        System.out.println(bs.deleteBooker(2));
     }
 
     @Test

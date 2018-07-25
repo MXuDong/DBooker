@@ -1,8 +1,11 @@
 package dong.service.Impl;
 
 import dong.dao.BookersMapper;
+import dong.dao.CareMapper;
+import dong.dao.SpeakBookerMapper;
 import dong.dao.UserMapper;
 import dong.model.Bookers;
+import dong.model.SpeakBooker;
 import dong.model.User;
 import dong.service.Interface.BookerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,26 @@ import java.util.List;
 public class BookerServiceImpl implements BookerService {
     private BookersMapper bookersMapper;
     private UserMapper userMapper;
+    private SpeakBookerMapper speakBookerMapper;
+    private CareMapper careMapper;
+
+    public SpeakBookerMapper getSpeakBookerMapper() {
+        return speakBookerMapper;
+    }
+
+    @Autowired
+    public void setSpeakBookerMapper(SpeakBookerMapper speakBookerMapper) {
+        this.speakBookerMapper = speakBookerMapper;
+    }
+
+    public CareMapper getCareMapper() {
+        return careMapper;
+    }
+
+    @Autowired
+    public void setCareMapper(CareMapper careMapper) {
+        this.careMapper = careMapper;
+    }
 
     @Override
     public Bookers findBookerById(int bookerId) {
@@ -30,6 +53,8 @@ public class BookerServiceImpl implements BookerService {
 
     @Override
     public boolean deleteBooker(int bookerId) {
+        careMapper.deleteByBookerId(bookerId);
+        speakBookerMapper.deleteByPrimaryKey(bookerId);
         int res = bookersMapper.deleteByPrimaryKey(bookerId);
         return res == 1;
     }

@@ -19,4 +19,6 @@ public interface SpeakBookerMapper {
     int updateByPrimaryKeySelective(SpeakBooker record);
 
     int updateByPrimaryKey(SpeakBooker record);
+
+    int deleteByBookerId(int bookerId);
 }

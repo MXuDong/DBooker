@@ -15,4 +15,6 @@ public interface CareMapper {
     Care selectByPrimaryKey(Integer careId);
 
     int updateByPrimaryKey(Care record);
+
+    int deleteByBookerId(int bookerId);
 }

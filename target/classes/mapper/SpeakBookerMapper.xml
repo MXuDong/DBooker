@@ -24,6 +24,10 @@
     delete from t_speak_booker
     where speak_id = #{speakId,jdbcType=INTEGER}
   </delete>
+  <delete id="deleteByBookerId" parameterType="java.lang.Integer">
+    delete from t_speak_booker
+    where booker_id = #{bookerId}
+  </delete>
   <insert id="insert" parameterType="dong.model.SpeakBooker" >
     insert into t_speak_booker (speak_id, booker_id, user_id, 
       speak_time, speak_info)

@@ -23,6 +23,10 @@
     delete from t_care
     where care_id = #{careId,jdbcType=INTEGER}
   </delete>
+  <delete id="deleteByBookerId" parameterType="java.lang.Integer">
+    delete from t_care
+    where booker_id = #{bookerId}
+  </delete>
   <insert id="insert" parameterType="dong.model.Care" >
     insert into t_care (care_id, user_id, booker_id, 
       care_time)
