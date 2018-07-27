@@ -1,0 +1,33 @@
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span1">
+		</div>
+		<div class="span8">
+		</div>
+		<div class="span2">
+			<ul class="nav nav-list">
+				<li class="nav-header">
+					分类信息
+				</li>
+				<li class="active">
+				</li>
+				<li class="nav-header">
+					功能列表
+				</li>
+				<li>
+					个人
+				</li>
+				<li>
+					动态
+				</li>
+				<li class="divider">
+				</li>
+				<li>
+					关于
+				</li>
+			</ul>
+		</div>
+		<div class="span1">
+		</div>
+	</div>
+</div>
