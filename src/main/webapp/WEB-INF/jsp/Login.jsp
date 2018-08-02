@@ -27,7 +27,7 @@
                 </div>
                 <div class="control-group">
                     <div class="controls">
-                        <button type="submit" class="btn">登陆</button>
+                        <button type="submit" class="btn" onclick="Login()">登陆</button>
                     </div>
                 </div>
             </form>
@@ -36,4 +36,12 @@
         </div>
     </div>
 </div>
+<script>
+    function Login() {
+        $.post("/user/login", {
+            "userName":"mxd",
+            "password":"233333"
+        })
+    }
+</script>
 <%@ include file="Footer.jsp"%>
