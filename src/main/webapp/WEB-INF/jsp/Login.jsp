@@ -12,7 +12,6 @@
         <div class="span2">
         </div>
         <div class="span8">
-            <form class="form-horizontal">
                 <div class="control-group">
                     <label class="control-label" for="inputEmail">邮箱</label>
                     <div class="controls">
@@ -27,10 +26,9 @@
                 </div>
                 <div class="control-group">
                     <div class="controls">
-                        <button type="submit" class="btn" onclick="Login()">登陆</button>
+                        <a onclick="Login()">登陆</a>
                     </div>
                 </div>
-            </form>
         </div>
         <div class="span2">
         </div>
@@ -38,10 +36,13 @@
 </div>
 <script>
     function Login() {
-        $.post("/user/login", {
+        $.post("/user/login/", {
             "userName":"mxd",
             "password":"233333"
-        })
+        },
+        function (data) {
+            console.log(data.userId);
+        },"json");
     }
 </script>
 <%@ include file="Footer.jsp"%>
