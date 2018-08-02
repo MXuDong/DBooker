@@ -8,10 +8,17 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("")
 public class defaultController {
 
-    @RequestMapping(value = {"", "index.jsp"})
+    @RequestMapping(value = {"", "index"})
     public ModelAndView turnToIndexJsp(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("index");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "login")
+    public ModelAndView turnToLoginJsp(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("Login");
         return modelAndView;
     }
 }
