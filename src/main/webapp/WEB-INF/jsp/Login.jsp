@@ -26,7 +26,7 @@
                 </div>
                 <div class="control-group">
                     <div class="controls">
-                        <a onclick="Login()">登陆</a>
+                        <button class="btn" onclick="Login()">登陆</button>
                     </div>
                 </div>
         </div>
