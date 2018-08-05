@@ -6,41 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="Header.jsp" %>
-<div class="container-fluid">
-    <div class="row-fluid">
-        <div class="col-md-2">
+<%@include file="Header.jsp"%>
 
-        </div>
-        <div class="col-md-8">
-                <div class="control-group">
-                    <label class="control-label" for="inputEmail">邮箱</label>
-                    <div class="controls">
-                        <input id="inputEmail" type="text" />
-                    </div>
-        <div class="span8">
-            <div class="control-group">
-                <label class="control-label" for="inputUserName">邮箱</label>
-                <div class="controls">
-                    <input id="inputUserName" type="text"/>
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="inputPassword">密码</label>
-                <div class="controls">
-                    <input id="inputPassword" type="password"/>
-                </div>
-            </div>
-            <div class="control-group">
-                <div class="controls">
-                    <button type="submit" class="btn" onclick="Login()">登陆</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2">
-        </div>
-    </div>
-</div>
 <script>
     function Login() {
         var userName = $("#inputUserName").val();
@@ -62,4 +29,4 @@
             "json");
     }
 </script>
-<%@ include file="Footer.jsp" %>
+<%@ include file="Footer.jsp"%>
