@@ -8,6 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="Header.jsp"%>
 
+<div class="row">
+    
+</div>
+
 <script>
     function Login() {
         var userName = $("#inputUserName").val();
