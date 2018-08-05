@@ -9,9 +9,10 @@
 <%@include file="Header.jsp"%>
 <div class="container-fluid">
     <div class="row-fluid">
-        <div class="span2">
+        <div class="col-md-2">
+
         </div>
-        <div class="span8">
+        <div class="col-md-8">
                 <div class="control-group">
                     <label class="control-label" for="inputEmail">邮箱</label>
                     <div class="controls">
@@ -30,7 +31,7 @@
                     </div>
                 </div>
         </div>
-        <div class="span2">
+        <div class="col-md-2">
         </div>
     </div>
 </div>
