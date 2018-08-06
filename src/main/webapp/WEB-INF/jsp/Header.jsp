@@ -12,6 +12,7 @@
     <title>Hello, world!</title>
 
     <script src="../js/jquery.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
     <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="../css/bootstrap-4.0.0-dist/js/bootstrap.js" ></script>
 </head>

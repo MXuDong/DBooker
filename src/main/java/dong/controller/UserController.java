@@ -10,12 +10,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
     @Autowired
     private UserServiceI userServiceI;
+    @Autowired
+    private HttpServletRequest request;
 
     @RequestMapping("")
     public ModelAndView defaultUser(){
@@ -28,7 +33,10 @@ public class UserController {
     public @ResponseBody User login(String userName, String password){
         User user = new User();
         if(userServiceI.userCanLoginIn(userName, password)){
-            user = userServiceI.findUserByUserName(userName);
+            User res = userServiceI.findUserByUserName(userName);
+            HttpSession session = request.getSession();
+            session.setAttribute("userId", res.getUserId());
+            user.setUserId(res.getUserId());
         }
 
         return user;

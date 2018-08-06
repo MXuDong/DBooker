@@ -49,10 +49,12 @@
     </div>
 
     <script type="text/javascript">
+        // 添加提示
         function alertShow(info) {
             $("#login_error").append("<div class=\"alert alert-danger\" role=\"alert\"> " + info + " <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></div>")
         }
 
+        //登陆前的检查，检查数据是否合法
         function login_Check(){
             var userName = $("#userName").val();
             if(userName.length == 0){
@@ -69,6 +71,7 @@
             return true;
         }
 
+        //登录操作
         function login() {
             if(login_Check()){
                 doPost();
@@ -77,10 +80,12 @@
                 return false;
             }
         }
-        
+
+        // 向后台请求登陆操作
         function doPost() {
             var userName = $("#userName").val();
             var password = $("#password").val();
+            var res = false;
             $.post(
                 "/user/login",
                 {
@@ -89,13 +94,23 @@
                 },
                 function (data) {
                     if(data.userId == null){
-                        return false;
+                        dealRes(false);
                     }else{
-
+                        $.cookie('userId', data.userId);
+                        dealRes(true);
                     }
                 },
                 "json"
             );
+        }
+
+        //处理登陆结果
+        function dealRes(status) {
+            if(status){
+                alert("Success");
+            }else {
+                alertShow("登陆失败！请检查用户名和密码是否正确");
+            }
         }
     </script>
 <%@ include file="Footer.jsp"%>
