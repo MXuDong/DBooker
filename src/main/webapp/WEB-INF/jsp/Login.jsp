@@ -49,22 +49,20 @@
     </div>
 
     <script type="text/javascript">
-        // 添加提示
-        function alertShow(info) {
-            $("#login_error").append("<div class=\"alert alert-danger\" role=\"alert\"> " + info + " <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></div>")
-        }
+        
+        var errorDiv = $("#login_error");
 
         //登陆前的检查，检查数据是否合法
         function login_Check(){
             var userName = $("#userName").val();
             if(userName.length == 0){
-                alertShow("错误！账号不能为空");
+                alertShow(errorDiv, "错误！账号不能为空");
                 return false;
             }
 
             var password = $("#password").val();
             if(password.length == 0){
-                alertShow("错误！密码不能为空");
+                alertShow(errorDiv, "错误！密码不能为空");
                 return false;
             }
 
@@ -109,7 +107,7 @@
             if(status){
                 alert("Success");
             }else {
-                alertShow("登陆失败！请检查用户名和密码是否正确");
+                alertShow(errorDiv, "登陆失败！请检查用户名和密码是否正确");
             }
         }
     </script>

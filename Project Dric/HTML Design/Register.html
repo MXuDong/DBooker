@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="js/default.js"></script>
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <!-- 登陆界面小标题 -->
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">DBooker</h1>
+        <p class="lead">DBookers, 正在注册</p>
+        <hr class="my-4"> 
+        <!-- 错误提示 -->
+        <div id="error"></div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <!-- 用户名 -->
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">账&nbsp;&nbsp;&nbsp;&nbsp;号</span>
+            </div>
+            <input id="userName" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="您用来登陆的账号">
+          </div>
+
+          <!-- 用户密码 -->
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">密&nbsp;&nbsp;&nbsp;&nbsp;码</span>
+            </div>
+            <input id="password" type="password" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="账号的密码">
+          </div>
+
+          <!-- 密码确认 -->
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">确认密码</span>
+            </div>
+            <input id="password_again" type="password" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="再次输入密码，确认我们得到的是正确的密码">
+          </div>
+
+          <!-- 按钮组 -->
+          <div class="row">
+            <div class="col-md 4"><button type="button" class="btn btn-outline-success btn-block" onclick="doRegister()">立即注册</button></div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"><button type="button" class="btn btn-outline-secondary btn-block">账号登陆</button></div>
+          </div>
+
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+    </div>
+  
+    <script type="text/javascript">
+      
+      var ERRORDIV = $("#error");
+
+      //进行注册行为
+      function doRegister() {
+        if(registerCheck()){
+          alert("Success");
+        }
+        else{
+          alert("Faild");
+        }
+      }
+
+      // 判断注册信息是否合法
+      function registerCheck() {
+        //获取输入的信息
+        var userName = $("#userName").val();
+        var password = $("#password").val();
+        var password_again = $("#password_again").val();
+
+        //判断输入的内容是否合理
+        if(!isStringIlgal(userName)){
+          alertShow(ERRORDIV, "异常！账号不合法,输入的信息只能为 英文字母（区分大小写）、数字和下划线，请检查");
+          return false;
+        }
+        if(!isStringIlgal(password)){
+          alertShow(ERRORDIV, "异常！密码不合法,输入的信息只能为 英文字母（区分大小写）、数字和下划线，请检查");
+          return false; 
+        }
+
+        // 判别长度是否合法
+        if(!(userName.length >= 5 && userName.length <= 12)){
+          alertShow(ERRORDIV, "错误!账号的长度必须为 5 - 12 （包括5， 12），请检查");
+          return false;
+        }
+        if(!(password.length >= 8 && password.length <= 15)){
+          alertShow(ERRORDIV, "错误!密码的长度必须为 8 - 15 （包括8， 15），请检查");
+          return false;
+        }
+
+        // 判断两次密码是否一致
+        var i = 0;
+        if(password.length != password_again.length){
+          alertShow(ERRORDIV, "您输入的两次密码长度不一致");
+          return false;
+        }
+        for(i = 0; i < password.length; i++){
+          if(password_again[i] != password[i]){
+            alertShow(ERRORDIV, "错误!两次密码不一致，请检查");
+            return false;
+          }
+        }
+
+        return true;
+      }
+
+      // 登陆账号必须为应为字母、数字或者下划线，其他字符均为不合法字符
+      function isStringIlgal(str) {
+        var i = 0;
+        for(i = 0; i < str.length; i++){
+          if(!(
+            (str[i] >= 'A' && str[i] <= 'Z') ||
+            (str[i] >= 'a' && str[i] <= 'z') ||
+            (str[i] >= '0' && str[i] <= '9') ||
+            (str[i] == '_')
+            )){
+            return false;
+          }
+        }
+        return true;
+      }
+    
+
+    </script>
+    
+
+    
+
+    
+  </body>
+</html>
