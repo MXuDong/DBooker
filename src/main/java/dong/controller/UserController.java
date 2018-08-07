@@ -41,4 +41,19 @@ public class UserController {
 
         return user;
     }
+
+    @RequestMapping(value = "register", method = RequestMethod.POST)
+    public @ResponseBody User register(String userName, String password){
+        User user = userServiceI.findUserByUserName(userName);
+        if(user == null){
+            user = new User();
+            user.setUserName(userName);
+            user.setUserPassword(password);
+            userServiceI.registerUser(user);
+            return new User();
+        }
+        User tmp = new User();
+        tmp.setUserId(user.getUserId());
+        return tmp;
+    }
 }

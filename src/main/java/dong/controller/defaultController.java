@@ -21,4 +21,11 @@ public class defaultController {
         modelAndView.setViewName("Login");
         return modelAndView;
     }
+
+    @RequestMapping(value = "register")
+    public ModelAndView turnToRegisterJsp(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("Register");
+        return modelAndView;
+    }
 }
