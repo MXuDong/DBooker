@@ -45,7 +45,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-default">确认密码</span>
                 </div>
                 <input id="password_again" type="password" class="form-control" aria-label="Default"
-                       aria-describedby="inputGroup-sizing-default" placeholder="再次输入密码，确认我们得到的是正确的密码">
+                       aria-describedby="inputGroup-sizing-default" placeholder="再次输入密码">
             </div>
 
             <!-- 按钮组 -->
@@ -55,7 +55,7 @@
                 </div>
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
-                    <button type="button" class="btn btn-outline-secondary btn-block">账号登陆</button>
+                    <button type="button" class="btn btn-outline-secondary btn-block" onclick="turnToLogin()">账号登陆</button>
                 </div>
             </div>
 
@@ -68,16 +68,28 @@
 
     var ERRORDIV = $("#error");
 
+    //页面跳转
+    function turnToLogin(){
+        window.location="/login";
+    }
+
     //进行注册行为
     function doRegister() {
         if (registerCheck()) {
-            alert("Success");
-        }
-        else {
-            alert("Faild");
+            $.post("/user/register",
+                {
+                    "userName": $("#userName").val(),
+                    "password": $("#password").val()
+                },
+                function (data) {
+                    if(data.userId == null){
+                        alert("Success");
+                    }else{
+                        alertShow(ERRORDIV,"失败！该账号已经存在，请更换账号重试");
+                    }
+                }, "json");
         }
     }
-
     // 判断注册信息是否合法
     function registerCheck() {
         //获取输入的信息

@@ -49,6 +49,7 @@ public class UserController {
             user = new User();
             user.setUserName(userName);
             user.setUserPassword(password);
+            user.setUserSex("M");
             userServiceI.registerUser(user);
             return new User();
         }

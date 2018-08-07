@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="col-md 4"><button type="button" class="btn btn-outline-success btn-block" onclick="login()">确认登陆</button></div>
                 <div class="col-md-4"><button type="button" class="btn btn-outline-warning btn-block">忘记密码</button></div>
-                <div class="col-md-4"><button type="button" class="btn btn-outline-secondary btn-block">立即注册</button></div>
+                <div class="col-md-4"><button type="button" class="btn btn-outline-secondary btn-block" onclick="turnToRegister()" >立即注册</button></div>
             </div>
             <div class="col-md-4"></div>
         </div>
@@ -51,6 +51,10 @@
     <script type="text/javascript">
         
         var errorDiv = $("#login_error");
+
+        function turnToRegister() {
+            window.location = "/register";
+        }
 
         //登陆前的检查，检查数据是否合法
         function login_Check(){
