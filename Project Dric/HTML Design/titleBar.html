@@ -14,6 +14,7 @@
     <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script src="js/default.js"></script>
+    <script src="js/jquery_cookie.js"></script>
     <title>Hello, world!</title>
   </head>
   <body>
@@ -25,13 +26,13 @@
       <!-- 链接组 -->
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-item nav-link active" href="#">关于<span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link disabled" href="#">创建新博客</a>
-          <a class="nav-item nav-link disabled" href="#">我的DB空间</a>
-          <a class="nav-item nav-link disabled" href="#">我的关注</a>
-          <a class="nav-item nav-link disabled" href="#">我的收藏</a>
-          <a class="nav-item nav-link disabled" href="#">个人信息</a>
-          <a class="nav-item nav-link" href="#">登陆</a>
+          <a id="navbar_about" class="nav-item nav-link active" href="#">关于</a>
+          <a id="navbar_newBooker" class="nav-item nav-link" >创建新博客</a>
+          <a id="navbar_myDb" class="nav-item nav-link" >我的DB空间</a>
+          <a id="navbar_myFollow" class="nav-item nav-link" >我的关注</a>
+          <a id="navbar_myCare" class="nav-item nav-link" >我的收藏</a>
+          <a id="navbar_myInfo" class="nav-item nav-link" >个人信息</a>
+          <a id="navbar_LR" class="nav-item nav-link" ></a>
         </div>
       </div>
 
@@ -41,6 +42,21 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">查找</button>
       </form>
     </nav>
+
+  <script type="text/javascript">
+
+    //绑定常量  导航连的所有链接
+    var NAVBAR_ABOUT     = $("#navbar_about");
+    var NAVBAR_NEWBOOKER = $("#navbar_newBooker");
+    var NAVBAR_MYDB      = $("#navbar_myDb");
+    var NAVBAR_MYFOLLOW  = $("#navbar_myFollow");
+    var NAVBAR_MYCARE    = $("#navbar_myCare");
+    var NAVBAR_MYINFO    = $("#navbar_myInfo");
+    var NAVBAR_LR        = $("#navbar_LR");
+
+    // Windows加载调用的方法
+    $(document)
+  </script>
 
   </body>
 </html>
