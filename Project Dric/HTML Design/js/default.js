@@ -8,5 +8,5 @@ function alertShow(errorDiv,info) {
 如果用户登陆，则userId不为空
 如果用户没有登陆，则userId为空
 */
-function checkIsLogin(){return $.cookie('userId') == null;}
+function checkIsLogin(){return $.cookie('userId') != null;}
 
