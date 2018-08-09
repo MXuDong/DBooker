@@ -10,3 +10,4 @@ function alertShow(errorDiv,info) {
 */
 function checkIsLogin(){return $.cookie('userId') != null;}
 
+function getUserIdInCookie(){return $.cookie('userId')}

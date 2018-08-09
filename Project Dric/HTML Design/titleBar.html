@@ -38,7 +38,7 @@
 
       <!-- 搜索框 -->
       <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <input id="SearchInfo" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">查找</button>
       </form>
     </nav>
@@ -57,7 +57,7 @@
     // Windows加载调用的方法
     $(document).ready(function(){
       if(checkIsLogin()){
-        console.log("true");
+        var userId = getUserIdInCookie();
       }else{
         NAVBAR_NEWBOOKER.addClass("disabled");
         NAVBAR_MYDB.addClass("disabled");
@@ -66,7 +66,11 @@
         NAVBAR_MYINFO.addClass("disabled");
         NAVBAR_LR.text("登陆");
       }
-    })
+    });
+
+    function SearchButton(){
+      var searchInfo = $("#SearchInfo").val();
+    }
   </script>
 
   </body>
