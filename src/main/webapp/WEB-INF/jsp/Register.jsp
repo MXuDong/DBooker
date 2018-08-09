@@ -83,7 +83,7 @@
                 },
                 function (data) {
                     if(data.userId == null){
-                        alert("Success");
+                        window.location = "/login";
                     }else{
                         alertShow(ERRORDIV,"失败！该账号已经存在，请更换账号重试");
                     }
