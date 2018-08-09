@@ -7,16 +7,88 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <title>Hello, world!</title>
-  </head>
-  <body>
-    <h1>Hello, world!</h1>
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="js/default.js"></script>
+    <script src="js/jquery_cookie.js"></script>
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+
+      <!-- 标题 -->
+      <a class="navbar-brand" href="#">DBooker</a>
+
+      <!-- 链接组 -->
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a id="navbar_about"     href="#" class="nav-item nav-link active">关于</a>
+          <a id="navbar_newBooker" href="#" class="nav-item nav-link" >创建新博客</a>
+          <a id="navbar_myDb"      href="#" class="nav-item nav-link" >我的DB空间</a>
+          <a id="navbar_myFollow"  href="#" class="nav-item nav-link" >我的关注</a>
+          <a id="navbar_myCare"    href="#" class="nav-item nav-link" >我的收藏</a>
+          <a id="navbar_myInfo"    href="#" class="nav-item nav-link" >个人信息</a>
+          <a id="navbar_LR"        href="#" class="nav-item nav-link" ></a>
+        </div>
+      </div>
+
+      <!-- 搜索框 -->
+      <form class="form-inline">
+        <input id="SearchInfo" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">查找</button>
+      </form>
+    </nav>
+
+  <script type="text/javascript">
+
+    //绑定常量  导航连的所有链接
+    var NAVBAR_ABOUT     = $("#navbar_about");
+    var NAVBAR_NEWBOOKER = $("#navbar_newBooker");
+    var NAVBAR_MYDB      = $("#navbar_myDb");
+    var NAVBAR_MYFOLLOW  = $("#navbar_myFollow");
+    var NAVBAR_MYCARE    = $("#navbar_myCare");
+    var NAVBAR_MYINFO    = $("#navbar_myInfo");
+    var NAVBAR_LR        = $("#navbar_LR");
+
+    // Windows加载调用的方法
+    $(document).ready(function(){
+      if(checkIsLogin()){
+        var userId = getUserIdInCookie();
+        $.get(
+            "/user/getUserName",
+            {"userId" : userId},
+            function (data) {
+                if(data.userName != null){
+                    NAVBAR_LR.text("您好:" + data.userName);
+                }else{
+                    NAVBAR_NEWBOOKER.addClass("disabled");
+                    NAVBAR_MYDB.addClass("disabled");
+                    NAVBAR_MYFOLLOW.addClass("disabled");
+                    NAVBAR_MYCARE.addClass("disabled");
+                    NAVBAR_MYINFO.addClass("disabled");
+                    NAVBAR_LR.text("登陆");
+                }
+            },
+            "json"
+        )
+      }else{
+        NAVBAR_NEWBOOKER.addClass("disabled");
+        NAVBAR_MYDB.addClass("disabled");
+        NAVBAR_MYFOLLOW.addClass("disabled");
+        NAVBAR_MYCARE.addClass("disabled");
+        NAVBAR_MYINFO.addClass("disabled");
+        NAVBAR_LR.text("登陆");
+      }
+    });
+
+    function SearchButton(){
+      var searchInfo = $("#SearchInfo").val();
+    }
+  </script>
+
   </body>
 </html>
