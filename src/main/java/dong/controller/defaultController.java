@@ -28,4 +28,11 @@ public class defaultController {
         modelAndView.setViewName("Register");
         return modelAndView;
     }
+
+    @RequestMapping(value = "about")
+    public ModelAndView turnAbout(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("About");
+        return modelAndView;
+    }
 }

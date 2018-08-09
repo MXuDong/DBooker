@@ -15,7 +15,7 @@
     <!-- 链接组 -->
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a id="navbar_about" href="#" class="nav-item nav-link active">关于</a>
+            <a id="navbar_about" href="/about" class="nav-item nav-link active">关于</a>
             <a id="navbar_newBooker" href="#" class="nav-item nav-link">创建新博客</a>
             <a id="navbar_myDb" href="#" class="nav-item nav-link">我的DB空间</a>
             <a id="navbar_myFollow" href="#" class="nav-item nav-link">我的关注</a>
