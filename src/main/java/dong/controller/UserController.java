@@ -57,4 +57,12 @@ public class UserController {
         tmp.setUserId(user.getUserId());
         return tmp;
     }
+
+    @RequestMapping(value = "getUserName", method = RequestMethod.GET)
+    public User getUserName(int userId){
+        User user = userServiceI.findUserById(userId);
+        User res = new User();
+        res.setUserName(user.getUserName());
+        return res;
+    }
 }
