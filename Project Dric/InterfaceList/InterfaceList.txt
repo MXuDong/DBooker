@@ -1,0 +1,4 @@
+1/User:
+    1:/user/login (String userName, String password) Method:post
+    2:/user/register (String userName, String password) Method:post
+    3:/user/getUserName (int userId) Method:get
