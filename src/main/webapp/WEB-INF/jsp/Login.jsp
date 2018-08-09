@@ -109,10 +109,17 @@
         //处理登陆结果
         function dealRes(status) {
             if(status){
-                alert("Success");
+                window.location = "/index";
             }else {
                 alertShow(errorDiv, "登陆失败！请检查用户名和密码是否正确");
             }
         }
+
+        //检测用户是否登陆
+        $(document).ready(function () {
+            if(checkIsLogin()){
+                window.location = "/index";
+            }
+        })
     </script>
 <%@ include file="Footer.jsp"%>

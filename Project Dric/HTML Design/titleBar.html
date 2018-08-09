@@ -58,6 +58,23 @@
     $(document).ready(function(){
       if(checkIsLogin()){
         var userId = getUserIdInCookie();
+        $.get(
+            "/user/getUserName",
+            {"userId" : userId},
+            function (data) {
+                if(data.userName != null){
+                    NAVBAR_LR.text("您好:" + data.userName);
+                }else{
+                    NAVBAR_NEWBOOKER.addClass("disabled");
+                    NAVBAR_MYDB.addClass("disabled");
+                    NAVBAR_MYFOLLOW.addClass("disabled");
+                    NAVBAR_MYCARE.addClass("disabled");
+                    NAVBAR_MYINFO.addClass("disabled");
+                    NAVBAR_LR.text("登陆");
+                }
+            },
+            "json"
+        )
       }else{
         NAVBAR_NEWBOOKER.addClass("disabled");
         NAVBAR_MYDB.addClass("disabled");

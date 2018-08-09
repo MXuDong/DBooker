@@ -59,10 +59,15 @@ public class UserController {
     }
 
     @RequestMapping(value = "getUserName", method = RequestMethod.GET)
-    public User getUserName(int userId){
-        User user = userServiceI.findUserById(userId);
-        User res = new User();
-        res.setUserName(user.getUserName());
-        return res;
+    public @ResponseBody User getUserName(String userId){
+        User user = new User();
+        if(user == null || userId == null){
+            return user;
+        }else {
+            user = userServiceI.findUserById(Integer.parseInt(userId));
+            User res = new User();
+            res.setUserName(user.getUserName());
+            return res;
+        }
     }
 }

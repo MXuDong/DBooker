@@ -6,22 +6,22 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="Header.jsp"%>
+<%@include file="Header.jsp" %>
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
 
     <!-- 标题 -->
-    <a class="navbar-brand" href="#">DBooker</a>
+    <a class="navbar-brand" href="/index">DBooker</a>
 
     <!-- 链接组 -->
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a id="navbar_about"     href="#" class="nav-item nav-link active">关于</a>
-            <a id="navbar_newBooker" href="#" class="nav-item nav-link" >创建新博客</a>
-            <a id="navbar_myDb"      href="#" class="nav-item nav-link" >我的DB空间</a>
-            <a id="navbar_myFollow"  href="#" class="nav-item nav-link" >我的关注</a>
-            <a id="navbar_myCare"    href="#" class="nav-item nav-link" >我的收藏</a>
-            <a id="navbar_myInfo"    href="#" class="nav-item nav-link" >个人信息</a>
-            <a id="navbar_LR"        href="#" class="nav-item nav-link" ></a>
+            <a id="navbar_about" href="#" class="nav-item nav-link active">关于</a>
+            <a id="navbar_newBooker" href="#" class="nav-item nav-link">创建新博客</a>
+            <a id="navbar_myDb" href="#" class="nav-item nav-link">我的DB空间</a>
+            <a id="navbar_myFollow" href="#" class="nav-item nav-link">我的关注</a>
+            <a id="navbar_myCare" href="#" class="nav-item nav-link">我的收藏</a>
+            <a id="navbar_myInfo" href="#" class="nav-item nav-link">个人信息</a>
+            <a id="navbar_LR" href="#" class="nav-item nav-link" onclick="NAVBAR_LR_Fun()"></a>
         </div>
     </div>
 
@@ -35,19 +35,39 @@
 <script type="text/javascript">
 
     //绑定常量  导航连的所有链接
-    var NAVBAR_ABOUT     = $("#navbar_about");
+    var NAVBAR_ABOUT = $("#navbar_about");
     var NAVBAR_NEWBOOKER = $("#navbar_newBooker");
-    var NAVBAR_MYDB      = $("#navbar_myDb");
-    var NAVBAR_MYFOLLOW  = $("#navbar_myFollow");
-    var NAVBAR_MYCARE    = $("#navbar_myCare");
-    var NAVBAR_MYINFO    = $("#navbar_myInfo");
-    var NAVBAR_LR        = $("#navbar_LR");
+    var NAVBAR_MYDB = $("#navbar_myDb");
+    var NAVBAR_MYFOLLOW = $("#navbar_myFollow");
+    var NAVBAR_MYCARE = $("#navbar_myCare");
+    var NAVBAR_MYINFO = $("#navbar_myInfo");
+    var NAVBAR_LR = $("#navbar_LR");
 
     // Windows加载调用的方法
-    $(document).ready(function(){
-        if(checkIsLogin()){
+    //进行导航栏初始化，同时获取用户参数，判断用户是否登陆
+    $(document).ready(function () {
+        if (checkIsLogin()) {
             var userId = getUserIdInCookie();
-        }else{
+            console.log(userId);
+            if(userId == null) return true;
+            $.get(
+                "/user/getUserName",
+                {"userId": userId},
+                function (data) {
+                    if (data.userName != null) {
+                        NAVBAR_LR.text("您好:" + data.userName + ",点击退出登陆");
+                    } else {
+                        NAVBAR_NEWBOOKER.addClass("disabled");
+                        NAVBAR_MYDB.addClass("disabled");
+                        NAVBAR_MYFOLLOW.addClass("disabled");
+                        NAVBAR_MYCARE.addClass("disabled");
+                        NAVBAR_MYINFO.addClass("disabled");
+                        NAVBAR_LR.text("登陆");
+                    }
+                },
+                "json"
+            )
+        } else {
             NAVBAR_NEWBOOKER.addClass("disabled");
             NAVBAR_MYDB.addClass("disabled");
             NAVBAR_MYFOLLOW.addClass("disabled");
@@ -57,7 +77,19 @@
         }
     });
 
-    function SearchButton(){
+    //登陆或注销
+    function NAVBAR_LR_Fun() {
+        var userId = getUserIdInCookie();
+        if(userId == null){
+            window.location = "/login";
+        }else{
+            $.cookie("userId", "", {expires: -1});
+            window.location = "/index";
+        }
+    }
+
+    //查找信息调用的函数
+    function NAVBAR_SearchButton() {
         var searchInfo = $("#SearchInfo").val();
     }
 </script>
