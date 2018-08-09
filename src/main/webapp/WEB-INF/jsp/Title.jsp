@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="Header.jsp" %>
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
     <!-- 标题 -->
     <a class="navbar-brand" href="/index">DBooker</a>
@@ -55,7 +55,7 @@
                 {"userId": userId},
                 function (data) {
                     if (data.userName != null) {
-                        NAVBAR_LR.text("您好:" + data.userName + ",点击退出登陆");
+                        NAVBAR_LR.text("您好:" + data.userName + ",[退出]");
                     } else {
                         NAVBAR_NEWBOOKER.addClass("disabled");
                         NAVBAR_MYDB.addClass("disabled");
