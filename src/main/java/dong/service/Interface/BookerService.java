@@ -19,4 +19,6 @@ public interface BookerService {
     User findAuthor(int bookersId);
     //通过作者ID查找某位作者的全部Booker
     List<Bookers> findBookersByUserId(int userId);
+    //获得一位作者ID的某位
+    int getBookerCount(int userId);
 }

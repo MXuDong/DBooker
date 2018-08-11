@@ -105,4 +105,10 @@ public class BookerServiceImpl implements BookerService {
 
         return res;
     }
+
+    @Override
+    public int getBookerCount(int userId) {
+       List<Bookers> bookers = findBookersByUserId(userId);
+       return bookers.size();
+    }
 }
