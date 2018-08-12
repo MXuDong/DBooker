@@ -27,14 +27,14 @@ public class TestBookerService {
         Bookers b = new Bookers();
         b.setBookerHead("标题");
         b.setBookerInfo("测试博客系统");
-        b.setUserId(2);
+        b.setUserId(12);
         b.setCreateTime(new Date());
         System.out.println(bs.createBooker(b));
     }
 
     @Test
     public void TestDeleteBooker(){
-        System.out.println(bs.deleteBooker(2));
+        System.out.println(bs.deleteBooker(6));
     }
 
     @Test

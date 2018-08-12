@@ -47,6 +47,14 @@ public class BookerServiceImpl implements BookerService {
 
     @Override
     public boolean createBooker(Bookers bookers) {
+        List<Bookers> temp = findBookersByUserId(bookers.getUserId());
+        Iterator<Bookers> iterator = temp.iterator();
+        while(iterator.hasNext()){
+            Bookers bookers1 = iterator.next();
+            if(bookers1.getBookerHead().equals(bookers.getBookerHead())){
+                return false;
+            }
+        }
         int res = bookersMapper.insert(bookers);
         return res == 1;
     }

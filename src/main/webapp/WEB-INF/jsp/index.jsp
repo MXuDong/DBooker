@@ -11,10 +11,17 @@
 <!-- 主分区 -->
 <div class="row">
     <!-- 个人DB信息 -->
-    <div class="col-md-2">
-        <!-- 列表框 -->
-        <div class="list-group" id="indexUserDb">
+    <div class="col-md-2" id="indexUserModel">
+
+        <%--大面板--%>
+        <div class="jumbotron">
+            <p class="lead">我的DB</p>
+            <hr class="my-4">
+            <!-- 列表框 -->
+            <div class="list-group" id="indexUserDb">
+            </div>
         </div>
+
     </div>
     <!-- 最新发表 -->
     <div class="col-md-5"></div>
@@ -26,26 +33,39 @@
 <script type="text/javascript">
 
     var INDEX_USERDB = $("#indexUserDb");
+    var INDEX_USERMODEL = $("#indexUserModel");
 
-    $(document).ready(function (){
-        if(checkIsLogin()){
-
-        }else{
+    $(document).ready(function () {
+        if (checkIsLogin()) {
+            getAuthorBookers();
+        } else {
             indexUserDB_add(INDEX_USERDB, "点击登陆获取更多信息");
+            $("#userInfo").text = "请先登陆"
         }
     })
 
-    function getUserBookerCount() {
-        $.get("/booker/getUserBookerCount",
-            {"userId": 2})
+    //获取作者的全部Booker
+    function getAuthorBookers() {
+        $.get("/booker/getUserBookers",
+            {
+                "getStatus": "-1",
+                "UserId": getUserIdInCookie
+            },
+            function (data) {
+                for (var i = 0, l = data.length; i < l; i++) {
+                    indexUserDB_add(INDEX_USERDB, data[i].bookerHead);
+                }
+            }, "json");
     }
 
-    function indexUserDB_add(parent,data){
-        parent.append("<a href=\"#\" class=\"list-group-item list-group-item-action\" onclick=\"turnToDbInfor(this)\">" + data + "</a>")
+    //插入列表
+    function indexUserDB_add(parent, data) {
+        parent.append("<a href=\"#\" class=\"list-group-item list-group-item-action list-group-item-secondary\" onclick=\"turnToDbInfor(this)\">" + data + "</a>")
     }
 
-    function turnToDbInfor(data){
-        if(data.text == "点击登陆获取更多信息"){
+    //跳转至登陆
+    function turnToDbInfor(data) {
+        if (data.text == "点击登陆获取更多信息") {
             window.location = "/login";
         }
     }
