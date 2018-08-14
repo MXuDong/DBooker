@@ -35,10 +35,14 @@
     var INDEX_USERDB = $("#indexUserDb");
     var INDEX_USERMODEL = $("#indexUserModel");
 
+    //加载初始化项目
     $(document).ready(function () {
+        // 验证是否有登陆
         if (checkIsLogin()) {
+            //有登陆获取登陆列表
             getAuthorBookers();
         } else {
+            // 没有登陆 提示用户需要登陆了
             indexUserDB_add(INDEX_USERDB, "点击登陆获取更多信息");
             $("#userInfo").text = "请先登陆"
         }
@@ -58,12 +62,12 @@
             }, "json");
     }
 
-    //插入列表
+    //插入列表，需要父元素
     function indexUserDB_add(parent, data) {
         parent.append("<a href=\"#\" class=\"list-group-item list-group-item-action list-group-item-secondary\" onclick=\"turnToDbInfor(this)\">" + data + "</a>")
     }
 
-    //跳转至登陆
+    //跳转至登陆或者博客详细信息
     function turnToDbInfor(data) {
         if (data.text == "点击登陆获取更多信息") {
             window.location = "/login";

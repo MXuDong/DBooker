@@ -119,4 +119,10 @@ public class BookerServiceImpl implements BookerService {
        List<Bookers> bookers = findBookersByUserId(userId);
        return bookers.size();
     }
+
+    @Override
+    public List<Bookers> findAll() {
+        List<Bookers> res = bookersMapper.findAll();
+        return res;
+    }
 }

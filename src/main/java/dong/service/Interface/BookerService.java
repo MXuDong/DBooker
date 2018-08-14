@@ -21,4 +21,6 @@ public interface BookerService {
     List<Bookers> findBookersByUserId(int userId);
     //获得一位作者ID的某位
     int getBookerCount(int userId);
+    //获取所有的Booker
+    List<Bookers> findAll();
 }
