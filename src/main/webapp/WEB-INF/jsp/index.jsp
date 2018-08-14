@@ -13,18 +13,21 @@
     <!-- 个人DB信息 -->
     <div class="col-md-2" id="indexUserModel">
 
+        <span class="border border-success">
         <%--大面板--%>
-        <div class="jumbotron">
-            <p class="lead">我的DB</p>
-            <hr class="my-4">
-            <!-- 列表框 -->
-            <div class="list-group" id="indexUserDb">
+            <div class="jumbotron">
+                <p class="lead">我的DB</p>
+                <hr class="my-4">
+                <!-- 列表框 -->
+                <div class="list-group" id="indexUserDb">
+                </div>
             </div>
-        </div>
-
+        </span>
     </div>
     <!-- 最新发表 -->
-    <div class="col-md-5"></div>
+    <div class="col-md-5">
+
+    </div>
     <!-- 关注人更新列表与收藏更新列表-最多每个显示10条（即：20条)
     且总和不超过最新发表 -->
     <div class="col-md-5"></div>
@@ -47,6 +50,20 @@
             $("#userInfo").text = "请先登陆"
         }
     })
+
+    //插入booker索引
+    function addBookersIndex(booker){
+        var str1 = "<a href=\"#\" class=\"list-group-item list-group-item-action flex-column align-items-start\" onclick=\"turnToDbInfor(this)\"><div class=\"d-flex w-100 justify-content-between\"><h5 class=\"mb-1\">";
+        var str2 = "</h5><small class=\"text-muted\">";
+        var str3 = "</small></div><small class=\"text-muted\">";
+        var str4 = "</small></a>";
+        var booker_headber;
+        var booker_author;
+        var booker_createTime;
+
+        var res = str1 + booker_headber + str2 + booker_author + str3 + booker_createTime + str4;
+
+    }
 
     //获取作者的全部Booker
     function getAuthorBookers() {
