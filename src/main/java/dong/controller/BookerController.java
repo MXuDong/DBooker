@@ -50,4 +50,25 @@ public class BookerController {
         }
         return res;
     }
+
+    @RequestMapping(value = "getMainBookers", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Bookers> getIndexMainBooker(String flagId){
+        int status = Integer.parseInt(flagId);
+        List<Bookers> res = new ArrayList<Bookers>();
+        List<Bookers> tmp = bookerService.findAll();
+        Iterator<Bookers> iterator = tmp.iterator();
+        int flag = 0;
+        int size = 0;
+        while(iterator.hasNext()){
+            if(flag < status) continue;
+            if(size >= 10) break;
+            Bookers bookers = iterator.next();
+            bookers.setBookerInfo(null);
+            res.add(bookers);
+            size++;
+        }
+
+        return res;
+    }
 }
