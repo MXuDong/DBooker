@@ -48,7 +48,6 @@
     $(document).ready(function () {
         if (checkIsLogin()) {
             var userId = getUserIdInCookie();
-            console.log(userId);
             if(userId == null) return true;
             $.get(
                 "/user/getUserName",
