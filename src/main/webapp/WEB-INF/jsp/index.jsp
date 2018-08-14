@@ -25,18 +25,30 @@
         </span>
     </div>
     <!-- 最新发表 -->
-    <div class="col-md-5">
+    <div class="col-md-7">
+        <div class="jumbotron">
+            <p class="lead">总览</p>
+            <hr class="my-4">
+            <p class="lead">
+                实时更新，快速阅览所有Booker
+            </p>
+            <!-- 列表框 -->
+            <div class="list-group" id="AllBooker">
+            </div>
+        </div>
 
     </div>
     <!-- 关注人更新列表与收藏更新列表-最多每个显示10条（即：20条)
     且总和不超过最新发表 -->
-    <div class="col-md-5"></div>
+    <div class="col-md-3"></div>
 </div>
 
 <script type="text/javascript">
 
     var INDEX_USERDB = $("#indexUserDb");
     var INDEX_USERMODEL = $("#indexUserModel");
+    var INDEX_ALL_BOOKER = $("#AllBooker");
+    var Get_All_Booker_Flg = 0;
 
     //加载初始化项目
     $(document).ready(function () {
@@ -46,23 +58,26 @@
             getAuthorBookers();
         } else {
             // 没有登陆 提示用户需要登陆了
-            indexUserDB_add(INDEX_USERDB, "点击登陆获取更多信息");
+            indexUserDB_add(INDEX_USERDB, "点击登陆获取信息");
             $("#userInfo").text = "请先登陆"
         }
+
+        getAllBooker();
     })
 
-    //插入booker索引
-    function addBookersIndex(booker){
-        var str1 = "<a href=\"#\" class=\"list-group-item list-group-item-action flex-column align-items-start\" onclick=\"turnToDbInfor(this)\"><div class=\"d-flex w-100 justify-content-between\"><h5 class=\"mb-1\">";
-        var str2 = "</h5><small class=\"text-muted\">";
-        var str3 = "</small></div><small class=\"text-muted\">";
-        var str4 = "</small></a>";
-        var booker_headber;
-        var booker_author;
-        var booker_createTime;
-
-        var res = str1 + booker_headber + str2 + booker_author + str3 + booker_createTime + str4;
-
+    //获取全部的部份Booker
+    function getAllBooker() {
+        var flagId = Get_All_Booker_Flg;
+        $.get("/booker/getMainBookers",
+            {
+                "flagId": flagId
+            },
+            function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    addBookersIndex(data[i].bookerHead, data[i].userId, new Date(data[i].createTime).toDateString());
+                }
+            },
+            "json");
     }
 
     //获取作者的全部Booker
@@ -84,9 +99,21 @@
         parent.append("<a href=\"#\" class=\"list-group-item list-group-item-action list-group-item-secondary\" onclick=\"turnToDbInfor(this)\">" + data + "</a>")
     }
 
+    //插入booker索引
+    function addBookersIndex(booker_headber, booker_author, booker_createTime) {
+        var str1 = "<a href=\"#\" class=\"list-group-item list-group-item-action flex-column align-items-start border border-warning rounded-left\" onclick=\"turnToDbInfor(this)\"><div class=\"d-flex w-100 justify-content-between\"><h2 class=\"mb-1\">";
+        var str2 = "</h1=2><h5 class=\"text-muted\">";
+        var str3 = "</h5></div><h5 class=\"text-muted\">";
+        var str4 = "</h5></a><br />";
+
+        var res = str1 + "标题：" + booker_headber + str2 + "作者：" + booker_author + str3 + "发布日期：" + booker_createTime + str4;
+
+        INDEX_ALL_BOOKER.append(res);
+    }
+
     //跳转至登陆或者博客详细信息
     function turnToDbInfor(data) {
-        if (data.text == "点击登陆获取更多信息") {
+        if (data.text == "点击登陆获取信息") {
             window.location = "/login";
         }
     }
