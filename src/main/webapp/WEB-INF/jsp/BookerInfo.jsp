@@ -16,9 +16,7 @@
             <h1 class="display-4" id="BookerHeader">BookerHeader</h1>
             <p class="lead text-right" id="BookerCreateTime">createTime</p>
             <hr class="my-4">
-            <span id="BookerInfo">
-
-            </span>
+            <span id="BookerInfo"></span>
             <%--版权声明--%>
             <p class="lead text-right">
                 <small id="AuthorOf">
@@ -26,8 +24,8 @@
                 </small>
             </p>
 
-            <button type="button" class="btn btn-outline-primary" id="Care">收藏</button>
-            <button type="button" class="btn btn-outline-secondary" id="Speak">评论</button>
+            <button type="button" class="btn btn-outline-primary" id="Care" onclick="onCareClick()">收藏</button>
+            <button type="button" class="btn btn-outline-secondary" id="Speak" onclick="onSpeakClick()">评论</button>
 
         </div>
     </div>
@@ -45,4 +43,40 @@
         </div>
     </div>
 </div>
+
+<script language="JavaScript">
+    var BookerHeader = $("#BookerHeader");
+    var CreateTime = $("#BookerCreateTime");
+    var BookerInfo = $("#BookerInfo");
+    var AuthorOf = $("#AuthorOf");
+    var Button_Care = $("#Care");
+    var Button_Speak = $("#Speak");
+
+    $(document).ready(function () {
+        var bookerHeader = cookie("BookerHeader");
+        //判断用户是否登陆
+        if(!checkIsLogin()){
+            Button_Care.addClass("disabled");
+            Button_Speak.addClass("disabled");
+        }
+        //检查Booker是否存在
+        if(bookerHeader == null){
+            BookerInfo.text = "没有找到这篇Booker，三秒后返回主页，请您重试！";
+            setTimeout(window.location = "index",3);
+        }
+
+        //可以申请Booker信息
+
+        //加载文章作者的其他博客
+    })
+
+    function onCareClick() {
+
+    }
+
+    function onSpeakClick() {
+
+    }
+
+</script>
 <%@ include file="Footer.jsp" %>

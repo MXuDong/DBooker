@@ -71,7 +71,6 @@ public class BookerController {
             res.add(bookers);
             size++;
         }
-
         return res;
     }
 }
