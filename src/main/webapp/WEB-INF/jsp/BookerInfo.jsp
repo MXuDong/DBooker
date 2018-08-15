@@ -54,6 +54,7 @@
 
     $(document).ready(function () {
         var bookerHeader = $.cookie("BookerHeader");
+        deleteCookie("BookerHeader");
         //判断用户是否登陆
         if(!checkIsLogin()){
             Button_Care.addClass("disabled");

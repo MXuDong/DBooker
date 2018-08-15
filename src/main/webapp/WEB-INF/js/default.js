@@ -20,3 +20,7 @@ function turnToBookerInfo(BookerHeader) {
     $.cookie("BookerHeader", BookerHeader);
     window.location = "bookerInfo";
 }
+//删除Cookie
+function deleteCookie(cookieName) {
+    $.cookie(cookieName, "", {expires: -1});
+}
