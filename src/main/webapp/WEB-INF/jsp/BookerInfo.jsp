@@ -53,7 +53,7 @@
     var Button_Speak = $("#Speak");
 
     $(document).ready(function () {
-        var bookerHeader = cookie("BookerHeader");
+        var bookerHeader = $.cookie("BookerHeader");
         //判断用户是否登陆
         if(!checkIsLogin()){
             Button_Care.addClass("disabled");

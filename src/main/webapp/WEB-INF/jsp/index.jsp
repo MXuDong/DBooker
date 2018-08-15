@@ -127,8 +127,13 @@
     function turnToDbInfor(data) {
         if (data.text == "点击登陆获取信息") {
             window.location = "/login";
+        }else{
+            var BookerHeader = data.text;
+            turnToBookerInfo(BookerHeader);
         }
     }
+
+
 </script>
 
 <%@ include file="Footer.jsp" %>
