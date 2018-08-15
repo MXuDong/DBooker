@@ -113,12 +113,12 @@
 
     //插入booker索引
     function addBookersIndex(booker_headber, booker_author, booker_createTime) {
-        var str1 = "<a href=\"#\" class=\"list-group-item list-group-item-action flex-column align-items-start border border-warning rounded-left\" onclick=\"turnToDbInfor(this)\"><div class=\"d-flex w-100 justify-content-between\"><h2 class=\"mb-1\">";
-        var str2 = "</h1=2><h5 class=\"text-muted\">";
+        var str1 = "<a href=\"#\" id=\"_" + booker_headber + "\" onclick=\"turnToDbInforById(this.id)\" class=\"list-group-item list-group-item-action flex-column align-items-start border border-warning rounded-left\" ><div class=\"d-flex w-100 justify-content-between\"><h2 class=\"mb-1\">";
+        var str2 = "</h2><h5 class=\"text-muted\">";
         var str3 = "</h5></div><h5 class=\"text-muted\">";
         var str4 = "</h5></a><br />";
 
-        var res = str1 + "标题：" + booker_headber + str2 + "作者：" + booker_author + str3 + "发布日期：" + booker_createTime + str4;
+        var res = str1 + booker_headber + str2 + "作者：" + booker_author + str3 + "发布日期：" + booker_createTime + str4;
 
         INDEX_ALL_BOOKER.append(res);
     }
@@ -131,6 +131,14 @@
             var BookerHeader = data.text;
             turnToBookerInfo(BookerHeader);
         }
+    }
+
+    function turnToDbInforById(data){
+        var header = "";
+        for(var i = 1; i < data.length; i++){
+            header = header + data[i];
+        }
+        turnToBookerInfo(header);
     }
 
 

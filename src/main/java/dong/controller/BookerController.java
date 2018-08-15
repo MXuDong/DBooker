@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.awt.print.Book;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -72,5 +73,18 @@ public class BookerController {
             size++;
         }
         return res;
+    }
+
+    @RequestMapping(value = "getBookerInfo", method = RequestMethod.GET)
+    @ResponseBody
+    public Bookers getBookerInfo(String BookerHeader){
+        List<Bookers> list = bookerService.findAll();
+        Bookers res;
+        Iterator<Bookers> iterator = list.iterator();
+        while(iterator.hasNext()){
+            res = iterator.next();
+            if(res.getBookerHead().equals(BookerHeader)) return res;
+        }
+        return null;
     }
 }

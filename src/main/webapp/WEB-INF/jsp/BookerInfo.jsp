@@ -54,19 +54,37 @@
 
     $(document).ready(function () {
         var bookerHeader = $.cookie("BookerHeader");
+        console.log(bookerHeader);
         deleteCookie("BookerHeader");
         //判断用户是否登陆
-        if(!checkIsLogin()){
+        if (!checkIsLogin()) {
             Button_Care.addClass("disabled");
             Button_Speak.addClass("disabled");
         }
         //检查Booker是否存在
-        if(bookerHeader == null){
+        if (bookerHeader == null) {
             BookerInfo.text = "没有找到这篇Booker，三秒后返回主页，请您重试！";
-            setTimeout(window.location = "index",3);
+            setTimeout(window.location = "index", 3);
         }
 
         //可以申请Booker信息
+
+        $.get("/booker/getBookerInfo",
+            {
+                "BookerHeader": bookerHeader
+            },
+            function (data) {
+                BookerHeader.text(data.bookerHead);
+                CreateTime.text(new Date(data.createTime).toDateString());
+                BookerInfo.text("");
+                BookerInfo.append(data.bookerInfo);
+                $.get("/user/getUserName",
+                    {
+                        "userId" : data.userId},
+                function (data) {
+                    AuthorOf.text("版权所有：" + data.userName);
+                }, "json")
+            }, "json")
 
         //加载文章作者的其他博客
     })
