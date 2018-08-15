@@ -35,4 +35,11 @@ public class defaultController {
         modelAndView.setViewName("About");
         return modelAndView;
     }
+
+    @RequestMapping(value = "bookerInfo")
+    public ModelAndView turnBookerInfo(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("BookerInfo");
+        return modelAndView;
+    }
 }
