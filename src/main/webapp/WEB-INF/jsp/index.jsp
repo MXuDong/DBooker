@@ -40,7 +40,19 @@
     </div>
     <!-- 关注人更新列表与收藏更新列表-最多每个显示10条（即：20条)
     且总和不超过最新发表 -->
-    <div class="col-md-3"></div>
+    <div class="col-md-3">
+        <%--大面板--%>
+            <div class="jumbotron">
+                <p class="lead">本站通知</p>
+                <hr class="my-4">
+                <p class="lead">
+                    Time:2018年8月15日-14点51分<br>
+                    Head:本站开始运行<br>
+                    User:Root<br>
+                    To  :All User
+                </p>
+            </div>
+    </div>
 </div>
 
 <script type="text/javascript">
@@ -74,7 +86,7 @@
             },
             function (data) {
                 for (var i = 0; i < data.length; i++) {
-                    addBookersIndex(data[i].bookerHead, data[i].userId, new Date(data[i].createTime).toDateString());
+                    addBookersIndex(data[i].bookerHead,data[i].bookerInfo, new Date(data[i].createTime).toDateString());
                 }
             },
             "json");

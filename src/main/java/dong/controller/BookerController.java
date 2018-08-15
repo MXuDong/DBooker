@@ -3,6 +3,7 @@ package dong.controller;
 import dong.model.Bookers;
 import dong.model.DefaultClass;
 import dong.service.Interface.BookerService;
+import dong.service.Interface.UserServiceI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,8 @@ public class BookerController {
 
     @Autowired
     BookerService bookerService;
+    @Autowired
+    UserServiceI userServiceI;
 
     @RequestMapping(value = "getUserBookerCount", method = RequestMethod.GET)
     @ResponseBody
@@ -64,7 +67,7 @@ public class BookerController {
             if(flag < status) continue;
             if(size >= 10) break;
             Bookers bookers = iterator.next();
-            bookers.setBookerInfo(null);
+            bookers.setBookerInfo(userServiceI.findUserById(bookers.getUserId()).getUserName());
             res.add(bookers);
             size++;
         }
