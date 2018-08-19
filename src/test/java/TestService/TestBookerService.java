@@ -25,8 +25,8 @@ public class TestBookerService {
     @Test
     public void TestCreateBooker(){
         Bookers b = new Bookers();
-        b.setBookerHead("标题");
-        b.setBookerInfo("测试博客系统");
+        b.setBookerHead("这个Booker用来测试我的显示系统是否正常");
+        b.setBookerInfo("<h1>Test One </h1><br/><ul><li>Author:Dong</li><li>Time : 2018-8-15</li></ul>");
         b.setUserId(12);
         b.setCreateTime(new Date());
         System.out.println(bs.createBooker(b));

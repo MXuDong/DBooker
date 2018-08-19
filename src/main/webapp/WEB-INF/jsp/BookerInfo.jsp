@@ -24,8 +24,12 @@
                 </small>
             </p>
 
-            <button type="button" class="btn btn-outline-primary" id="Care" onclick="onCareClick()">收藏</button>
+            <button type="button" class="btn btn-outline-primary" id="Care" onclick="onCareClick()"></button>
             <button type="button" class="btn btn-outline-secondary" id="Speak" onclick="onSpeakClick()">评论</button>
+
+        </div>
+        <%--评论列表--%>
+        <div>
 
         </div>
     </div>
@@ -51,16 +55,13 @@
     var AuthorOf = $("#AuthorOf");
     var Button_Care = $("#Care");
     var Button_Speak = $("#Speak");
+    var INDEX_USERDB = $("#indexUserDb");
+    var BookerAuthor = $("#BookerAuthor");
 
     $(document).ready(function () {
         var bookerHeader = $.cookie("BookerHeader");
-        console.log(bookerHeader);
         deleteCookie("BookerHeader");
-        //判断用户是否登陆
-        if (!checkIsLogin()) {
-            Button_Care.addClass("disabled");
-            Button_Speak.addClass("disabled");
-        }
+
         //检查Booker是否存在
         if (bookerHeader == null) {
             BookerInfo.text = "没有找到这篇Booker，三秒后返回主页，请您重试！";
@@ -78,15 +79,47 @@
                 CreateTime.text(new Date(data.createTime).toDateString());
                 BookerInfo.text("");
                 BookerInfo.append(data.bookerInfo);
+                //加载文章作者的其他博客
+                $.get("/booker/getUserBookers",
+                    {
+                        "getStatus": "-1",
+                        "UserId": data.userId
+                    },
+                    function (data) {
+                        for (var i = 0, l = data.length; i < l; i++) {
+                            indexUserDB_add(INDEX_USERDB, data[i].bookerHead);
+                        }
+                    }, "json");
                 $.get("/user/getUserName",
                     {
-                        "userId" : data.userId},
-                function (data) {
-                    AuthorOf.text("版权所有：" + data.userName);
-                }, "json")
+                        "userId": data.userId
+                    },
+                    function (data) {
+                        AuthorOf.text("版权所有：" + data.userName);
+                        BookerAuthor.text(data.userName);
+                    }, "json")
             }, "json")
 
-        //加载文章作者的其他博客
+        //判断用户是否登陆
+        if (!checkIsLogin()) {
+            Button_Care.addClass("disabled");
+            Button_Care.text("关注");
+            Button_Speak.addClass("disabled");
+        }else{
+            $.get("/Care/isUserCareBooker",
+                {
+                    "bookerHeader": BookerHeader.text(),
+                    "userId": getUserIdInCookie()
+                },
+                function (data) {
+                    if(data.ReaInt == 1){
+                        Button_Care.text("取消关注");
+                    }else{
+                        Button_Care.text("关注");
+                    }
+                }, "json")
+        }
+
     })
 
     function onCareClick() {
@@ -95,6 +128,16 @@
 
     function onSpeakClick() {
 
+    }
+
+    function turnToDbInfor(data) {
+        var BookerHeader = data.text;
+        turnToBookerInfo(BookerHeader);
+    }
+
+    //插入列表，需要父元素
+    function indexUserDB_add(parent, data) {
+        parent.append("<a href=\"#\" class=\"list-group-item list-group-item-action list-group-item-secondary\" onclick=\"turnToDbInfor(this)\">" + data + "</a>")
     }
 
 </script>
