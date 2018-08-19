@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.awt.print.Book;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -40,5 +41,18 @@ public class CareController {
         }
 
         return defaultClass;
+    }
+
+    @RequestMapping("addCare")
+    public void addCare(String userId, String bookerId){
+        Care care = new Care();
+        care.setCareTime(new Date());
+        care.setUserId(Integer.parseInt(userId));
+        care.setBookerId(Integer.parseInt(bookerId));
+        careService.createCare(care);
+    }
+
+    public void deleteCare(){
+
     }
 }
