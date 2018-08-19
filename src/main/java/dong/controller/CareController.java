@@ -52,7 +52,17 @@ public class CareController {
         careService.createCare(care);
     }
 
-    public void deleteCare(){
+    @RequestMapping("deleteCare")
+    public void deleteCare(String userId, String bookerHeader){
+        List<Care> list = careService.findAllCaresByUserId(Integer.parseInt(userId));
+
+        for(Care c : list){
+            Bookers bookers = bookerService.findBookerById(c.getBookerId());
+            if(bookers.getBookerHead().equals(bookerHeader)){
+                careService.deleteCare(c.getCareId());
+                return;
+            }
+        }
 
     }
 }
