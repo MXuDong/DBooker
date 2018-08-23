@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.jws.WebParam;
+
 @Controller
 @RequestMapping("")
 public class defaultController {
@@ -40,6 +42,13 @@ public class defaultController {
     public ModelAndView turnBookerInfo(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("BookerInfo");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "personInfo")
+    public ModelAndView turnPersonInfo(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("personInfo");
         return modelAndView;
     }
 }
