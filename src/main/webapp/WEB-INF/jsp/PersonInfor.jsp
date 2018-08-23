@@ -31,42 +31,42 @@
             <tr>
                 <td><p class="lead">用户名</p></td>
                 <td>:</td>
-                <td><p class="lead" id="P_UserName"></p></td>
+                <td><p class="lead" id="P_UserName">${requestScope.userName}</p></td>
             </tr>
             <tr>
                 <td><p class="lead">用户性别</p></td>
                 <td>:</td>
-                <td><p class="lead" id="P_UserSex"></p></td>
+                <td><p class="lead" id="P_UserSex">${requestScope.userSex}</p></td>
             </tr>
             <tr>
                 <td><p class="lead">用户真实姓名</p></td>
                 <td>:</td>
-                <td><p class="lead" id="P_TrueName"></p></td>
+                <td><p class="lead" id="P_TrueName">${requestScope.userTrueName}</p></td>
             </tr>
             <tr>
                 <td><p class="lead">用户签名</p></td>
                 <td>:</td>
-                <td><p class="lead" id="P_UserSign"></p></td>
+                <td><p class="lead" id="P_UserSign">${requestScope.userSign}</p></td>
             </tr>
             <tr>
                 <td><p class="lead">用户自述</p></td>
                 <td>:</td>
-                <td><p class="lead" id="P_UserDisc"></p></td>
+                <td><p class="lead" id="P_UserDisc">${requestScope.userDisc}</p></td>
             </tr>
             <tr>
                 <td><p class="lead">联系电话</p></td>
                 <td>:</td>
-                <td><p class="lead" id="P_UserPhone"></p></td>
+                <td><p class="lead" id="P_UserPhone">${requestScope.userPhone}</p></td>
             </tr>
             <tr>
                 <td><p class="lead">QQ</p></td>
                 <td></td>
-                <td><p class="lead" id="P_" UserQQ></p></td>
+                <td><p class="lead" id="P_" UserQQ>${requestScope.userQQ}</p></td>
             </tr>
             <tr>
                 <td><p class="lead">邮箱</p></td>
                 <td>:</td>
-                <td><p class="lead" id="P_UserEmail"></p></td>
+                <td><p class="lead" id="P_UserEmail">${requestScope.userEmail}</p></td>
             </tr>
         </table>
     </div>
