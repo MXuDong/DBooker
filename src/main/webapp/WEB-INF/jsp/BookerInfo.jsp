@@ -148,7 +148,7 @@
 
     }
 
-    // 评论按钮事件
+    // 评论按钮事件，等待完成
     function onSpeakClick() {
 
     }
