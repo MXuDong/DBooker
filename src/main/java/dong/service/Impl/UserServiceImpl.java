@@ -118,4 +118,10 @@ public class UserServiceImpl implements UserServiceI {
         int res = userMapper.updateByPrimaryKeySelective(user);
         return res == 1;
     }
+
+    @Override
+    public boolean deleteConnectionByUser(User user) {
+        int res = connectionMapper.deleteByUserId(user.getUserId());
+        return res == 1;
+    }
 }

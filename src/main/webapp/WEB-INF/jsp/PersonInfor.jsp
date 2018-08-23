@@ -25,7 +25,7 @@
         <!--用户信息框-->
         <div class="jumbotron">
             <h1 class="display-4">DBooker</h1>
-            <p class="lead">The information of this user
+            <p class="lead">这个用户的详细信息
                 <button type="button" class="btn btn-outline-primary float-right">关注这个用户</button>
             </p>
 

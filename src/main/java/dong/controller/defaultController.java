@@ -65,6 +65,8 @@ public class defaultController {
         modelAndView.addObject("userSign",user.getUserSign());
         modelAndView.addObject("userDisc",user.getUserDisc());
 
+
+
         return modelAndView;
     }
 

@@ -23,4 +23,6 @@ public interface UserServiceI {
     boolean createConnection(Connection connection);
     //修改密码
     boolean changePassword(User user);
+    //删除Connection
+    boolean deleteConnectionByUser(User user);
 }

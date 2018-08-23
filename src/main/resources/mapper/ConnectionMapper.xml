@@ -7,6 +7,9 @@
     <result column="QQ_number" property="qqNumber" jdbcType="CHAR" />
     <result column="Email" property="email" jdbcType="CHAR" />
   </resultMap>
+  <delete id="deleteByUserId" parameterType="INTEGER">
+    DELETE FROM t_connection WHERE user_id = #{userId};
+  </delete>
   <select id="findByUserId" resultMap="BaseResultMap" parameterType="INTEGER">
     SELECT * from t_connection WHERE user_id = #{userId};
   </select>
