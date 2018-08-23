@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.awt.print.Book;
@@ -31,10 +32,16 @@ public class CareController {
         DefaultClass defaultClass = new DefaultClass();
         defaultClass.setResInt(0);
         List<Care> list = careService.findAllCaresByUserId(Integer.parseInt(userId));
+        List<Bookers> bookers = bookerService.findAll();
+        Bookers booker = new Bookers();
+        for(Bookers b : bookers){
+            if(b.getBookerHead().equals(bookerHeader)){
+                booker = b;
+            }
+        }
 
         for(Care c : list){
-            Bookers bookers = bookerService.findBookerById(c.getBookerId());
-            if(bookers.getBookerHead().equals(bookerHeader)){
+            if(booker.getBookerHead().equals(bookerHeader)){
                 defaultClass.setResInt(1);
                 break;
             }
@@ -43,16 +50,24 @@ public class CareController {
         return defaultClass;
     }
 
-    @RequestMapping("addCare")
-    public void addCare(String userId, String bookerId){
+    @RequestMapping(value = "/addCare", method = RequestMethod.GET)
+    public void addCare(String userId, String bookerHeader){
         Care care = new Care();
         care.setCareTime(new Date());
         care.setUserId(Integer.parseInt(userId));
-        care.setBookerId(Integer.parseInt(bookerId));
+        List<Bookers> list = bookerService.findAll();
+        int BookerId = 0;
+        for(Bookers b : list){
+            if(b.getBookerHead().equals(bookerHeader)){
+                BookerId = b.getBookerId();
+                break;
+            }
+        }
+        care.setBookerId(BookerId);
         careService.createCare(care);
     }
 
-    @RequestMapping("deleteCare")
+    @RequestMapping(value = "/deleteCare",method = RequestMethod.GET)
     public void deleteCare(String userId, String bookerHeader){
         List<Care> list = careService.findAllCaresByUserId(Integer.parseInt(userId));
 
@@ -63,6 +78,5 @@ public class CareController {
                 return;
             }
         }
-
     }
 }

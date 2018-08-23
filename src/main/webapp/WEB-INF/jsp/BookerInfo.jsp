@@ -60,7 +60,7 @@
 
     $(document).ready(function () {
         var bookerHeader = $.cookie("BookerHeader");
-        deleteCookie("BookerHeader");
+
 
         //检查Booker是否存在
         if (bookerHeader == null) {
@@ -105,24 +105,43 @@
             Button_Care.addClass("disabled");
             Button_Care.text("关注");
             Button_Speak.addClass("disabled");
-        }else{
+        } else {
             $.get("/Care/isUserCareBooker",
                 {
-                    "bookerHeader": BookerHeader.text(),
+                    "bookerHeader": bookerHeader,
                     "userId": getUserIdInCookie()
                 },
                 function (data) {
-                    if(data.ReaInt == 1){
+                    if (data.resInt == 1) {
                         Button_Care.text("取消关注");
-                    }else{
+                    } else {
                         Button_Care.text("关注");
                     }
                 }, "json")
         }
-
+        deleteCookie("BookerHeader");
     })
 
     function onCareClick() {
+        if (checkIsLogin()) {
+            var userId = getUserIdInCookie();
+            var bookerHeader = BookerHeader.text();
+            if (Button_Care.text() == "关注") {
+                $.get("/Care/addCare",
+                    {
+                        "userId": userId,
+                        "bookerHeader": bookerHeader
+                    });
+                Button_Care.text("取消关注")
+            } else {
+                $.get("/Care/deleteCare",
+                    {
+                        "userId": userId,
+                        "bookerHeader": bookerHeader
+                    });
+                Button_Care.text("关注")
+            }
+        }
 
     }
 
