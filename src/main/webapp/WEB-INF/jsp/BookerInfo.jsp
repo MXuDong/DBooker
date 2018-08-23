@@ -61,7 +61,6 @@
     $(document).ready(function () {
         var bookerHeader = $.cookie("BookerHeader");
 
-
         //检查Booker是否存在
         if (bookerHeader == null) {
             BookerInfo.text = "没有找到这篇Booker，三秒后返回主页，请您重试！";
@@ -100,7 +99,7 @@
                     }, "json")
             }, "json")
 
-        //判断用户是否登陆
+        //设置关注状态
         if (!checkIsLogin()) {
             Button_Care.addClass("disabled");
             Button_Care.text("关注");
@@ -122,11 +121,14 @@
         deleteCookie("BookerHeader");
     })
 
+    // 关注按钮事件
     function onCareClick() {
+        // 检查登陆
         if (checkIsLogin()) {
             var userId = getUserIdInCookie();
             var bookerHeader = BookerHeader.text();
             if (Button_Care.text() == "关注") {
+                // 添加关注
                 $.get("/Care/addCare",
                     {
                         "userId": userId,
@@ -134,6 +136,7 @@
                     });
                 Button_Care.text("取消关注")
             } else {
+                //取消关注
                 $.get("/Care/deleteCare",
                     {
                         "userId": userId,
@@ -145,10 +148,12 @@
 
     }
 
+    // 评论按钮事件
     function onSpeakClick() {
 
     }
 
+    //跳转博客事件
     function turnToDbInfor(data) {
         var BookerHeader = data.text;
         turnToBookerInfo(BookerHeader);
