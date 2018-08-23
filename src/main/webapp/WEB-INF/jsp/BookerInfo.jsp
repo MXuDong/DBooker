@@ -39,7 +39,7 @@
         <!-- <%--大面板--%> -->
         <div class="jumbotron">
             <!-- 博客作者，点击跳转到他的信息页面 -->
-            <p class="lead" id="BookerAuthor">UserName</p>
+            <p class="lead" id="BookerAuthor" onclick="authorClick()">UserName</p>
             <hr class="my-4">
             <!-- 列表框 -->
             <div class="list-group" id="indexUserDb">
@@ -151,6 +151,11 @@
     // 评论按钮事件，等待完成
     function onSpeakClick() {
 
+    }
+
+    function authorClick() {
+        var AuthorName = BookerAuthor.text();
+        turnToUserInfo(AuthorName);
     }
 
     //跳转博客事件

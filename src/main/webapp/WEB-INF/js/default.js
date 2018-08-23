@@ -24,3 +24,7 @@ function turnToBookerInfo(BookerHeader) {
 function deleteCookie(cookieName) {
     $.cookie(cookieName, "", {expires: -1});
 }
+// 跳转到其他用户详情页
+function turnToUserInfo(UserName){
+    window.location = "personInfor?userName=" + UserName;
+}
