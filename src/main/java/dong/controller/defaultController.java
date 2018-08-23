@@ -10,45 +10,52 @@ import javax.jws.WebParam;
 @RequestMapping("")
 public class defaultController {
 
+//    首页
     @RequestMapping(value = {"", "index"})
     public ModelAndView turnToIndexJsp(){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("index");
-        return modelAndView;
+        String MAVName = "index";
+        return getModelAndView(MAVName);
     }
 
+//    登陆页面
     @RequestMapping(value = "login")
     public ModelAndView turnToLoginJsp(){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("Login");
-        return modelAndView;
+        String MAVName = "Login";
+        return getModelAndView(MAVName);
     }
 
+//    注册页面
     @RequestMapping(value = "register")
     public ModelAndView turnToRegisterJsp(){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("Register");
-        return modelAndView;
+        String MAVName = "Register";
+        return getModelAndView(MAVName);
     }
 
+//    关于页面
     @RequestMapping(value = "about")
     public ModelAndView turnAbout(){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("About");
-        return modelAndView;
+        String MAVName = "About";
+        return getModelAndView(MAVName);
     }
 
+//    博客信息详情页
     @RequestMapping(value = "bookerInfo")
     public ModelAndView turnBookerInfo(){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("BookerInfo");
-        return modelAndView;
+        String MAVName = "BookerInfo";
+        return getModelAndView(MAVName);
     }
 
+    //用户信息详情页
     @RequestMapping(value = "personInfo")
     public ModelAndView turnPersonInfo(){
+        String MAVName = "PersonInfor";
+        return getModelAndView(MAVName);
+    }
+
+//    MAV 生成工具
+    public ModelAndView getModelAndView(String MAVName){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("personInfo");
+        modelAndView.setViewName(MAVName);
         return modelAndView;
     }
 }
