@@ -1,5 +1,8 @@
 package dong.controller;
 
+import dong.model.User;
+import dong.service.Interface.UserServiceI;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -9,6 +12,9 @@ import javax.jws.WebParam;
 @Controller
 @RequestMapping("")
 public class defaultController {
+
+    @Autowired
+    UserServiceI userServiceI;
 
 //    首页
     @RequestMapping(value = {"", "index"})
@@ -46,10 +52,20 @@ public class defaultController {
     }
 
     //用户信息详情页
-    @RequestMapping(value = "personInfo")
-    public ModelAndView turnPersonInfo(){
-        String MAVName = "PersonInfor";
-        return getModelAndView(MAVName);
+    @RequestMapping(value = "personInfor")
+    public ModelAndView turnPersonInfo(String userName){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("PersonInfor");
+
+        User user = userServiceI.findUserByUserName(userName);
+
+        modelAndView.addObject("userName",user.getUserName());
+        modelAndView.addObject("userSex",user.getUserSex());
+        modelAndView.addObject("userTrueName",user.getUserTrueName());
+        modelAndView.addObject("userSign",user.getUserSign());
+        modelAndView.addObject("userDisc",user.getUserDisc());
+
+        return modelAndView;
     }
 
 //    MAV 生成工具
