@@ -1,5 +1,6 @@
 package dong.controller;
 
+import dong.model.Connection;
 import dong.model.User;
 import dong.service.Interface.UserServiceI;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +66,22 @@ public class defaultController {
         modelAndView.addObject("userSign",user.getUserSign());
         modelAndView.addObject("userDisc",user.getUserDisc());
 
-
+        Connection connection = userServiceI.findConnectionByUser(user);
+        String userQQ;
+        String userPhone;
+        String userEmail;
+        if(connection == null){
+            userQQ = "用户没有填写联系方式";
+            userPhone = "用户没有填写联系方式";
+            userEmail = "用户没有填写联系方式";
+        }else{
+            userPhone = connection.getPhoneNumber();
+            userQQ = connection.getQqNumber();
+            userEmail = connection.getEmail();
+        }
+        modelAndView.addObject("userPhone", userPhone);
+        modelAndView.addObject("userQQ", userQQ);
+        modelAndView.addObject("userEmail", userEmail);
 
         return modelAndView;
     }
