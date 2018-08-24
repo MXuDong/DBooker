@@ -6,8 +6,34 @@
 <%@ page isELIgnored="false" %>
 <div class="row">
     <%--本文件只用于展示用户信息,不可以进行设置用户信息--%>
-    <!--占位用-->
-    <div class="col-md-3"></div>
+    <!--博客详细信息-->
+    <div class="col-md-7">
+        <div class="jumbotron">
+            <h1 class="display-4">Bookers</h1>
+            <hr class="my-4">
+
+            <%--博客链接--%>
+            <c:forEach items="${requestScope.bookersList}" var="booker">
+
+                <a href="#" id="_${booker.bookerId}" onclick="turnToDbInforById(this.id)"
+                   class="list-group-item list-group-item-action flex-column align-items-start border border-warning rounded-left">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h2 class="mb-1">
+                                ${booker.bookerHead}
+                        </h2>
+                        <h5 class="text-muted">
+                                ${requestScope.userName}
+                        </h5>
+                    </div>
+                    <h5 class="text-muted">
+                            ${booker.createTime}
+                    </h5>
+                </a>
+                <br/>
+            </c:forEach>
+
+        </div>
+    </div>
     <!--信息显示区-->
     <!--
     用户信息
@@ -21,7 +47,7 @@
     7:qq号码
     8:电子邮箱
     -->
-    <div class="col-md-6">
+    <div class="col-md-5">
         <!--用户信息框-->
         <div class="jumbotron">
             <h1 class="display-4">DBooker</h1>
@@ -73,7 +99,16 @@
             </table>
         </div>
     </div>
-    <!--占位用-->
-    <div class="col-md-3"></div>
 </div>
+
+<script language="JavaScript">
+    //跳转至博客详情页
+    function turnToDbInforById(data){
+        var header = "";
+        for(var i = 1; i < data.length; i++){
+            header = header + data[i];
+        }
+        turnToBookerInfo(header);
+    }
+</script>
 <%@ include file="Footer.jsp" %>
