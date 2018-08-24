@@ -1,7 +1,9 @@
 package dong.controller;
 
+import dong.model.Bookers;
 import dong.model.Connection;
 import dong.model.User;
+import dong.service.Interface.BookerService;
 import dong.service.Interface.UserServiceI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.jws.WebParam;
+import java.util.List;
 
 @Controller
 @RequestMapping("")
@@ -16,6 +19,8 @@ public class defaultController {
 
     @Autowired
     UserServiceI userServiceI;
+    @Autowired
+    BookerService bookerService;
 
 //    首页
     @RequestMapping(value = {"", "index"})
@@ -83,6 +88,9 @@ public class defaultController {
         modelAndView.addObject("userQQ", userQQ);
         modelAndView.addObject("userEmail", userEmail);
 
+        List<Bookers> bookers = bookerService.findBookersByUserId(user.getUserId());
+
+        modelAndView.addObject("bookersList", bookers);
         return modelAndView;
     }
 
