@@ -63,14 +63,14 @@ public class defaultController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("PersonInfor");
 
+        //获取用户信息
         User user = userServiceI.findUserByUserName(userName);
-
         modelAndView.addObject("userName",user.getUserName());
         modelAndView.addObject("userSex",user.getUserSex());
         modelAndView.addObject("userTrueName",user.getUserTrueName());
         modelAndView.addObject("userSign",user.getUserSign());
         modelAndView.addObject("userDisc",user.getUserDisc());
-
+//        获取联系方式
         Connection connection = userServiceI.findConnectionByUser(user);
         String userQQ;
         String userPhone;
@@ -88,6 +88,7 @@ public class defaultController {
         modelAndView.addObject("userQQ", userQQ);
         modelAndView.addObject("userEmail", userEmail);
 
+//        获取bookers
         List<Bookers> bookers = bookerService.findBookersByUserId(user.getUserId());
 
         modelAndView.addObject("bookersList", bookers);

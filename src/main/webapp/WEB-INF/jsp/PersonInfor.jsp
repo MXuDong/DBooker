@@ -15,7 +15,7 @@
             <%--博客链接--%>
             <c:forEach items="${requestScope.bookersList}" var="booker">
 
-                <a href="#" id="_${booker.bookerId}" onclick="turnToDbInforById(this.id)"
+                <a href="#" id="_${booker.bookerHead}" onclick="turnToDbInforById(this.id)"
                    class="list-group-item list-group-item-action flex-column align-items-start border border-warning rounded-left">
                     <div class="d-flex w-100 justify-content-between">
                         <h2 class="mb-1">
@@ -52,7 +52,7 @@
         <div class="jumbotron">
             <h1 class="display-4">DBooker</h1>
             <p class="lead">这个用户的详细信息
-                <button type="button" class="btn btn-outline-primary float-right">关注这个用户</button>
+                <button id="P_Follow" type="button" class="btn btn-outline-primary float-right">关注这个用户</button>
             </p>
 
             <table class="table">
@@ -102,6 +102,17 @@
 </div>
 
 <script language="JavaScript">
+
+    var Follow = $("#P_Follow");
+
+    $(document).ready(function () {
+        if (!checkIsLogin()) {
+            Follow.addClass("disable");
+        } else {
+            
+        }
+    })
+
     //跳转至博客详情页
     function turnToDbInforById(data){
         var header = "";
@@ -109,6 +120,11 @@
             header = header + data[i];
         }
         turnToBookerInfo(header);
+    }
+
+    // 关注按钮事件
+    function FollowClick() {
+
     }
 </script>
 <%@ include file="Footer.jsp" %>
