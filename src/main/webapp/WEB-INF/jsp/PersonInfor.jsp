@@ -109,7 +109,8 @@
         if (!checkIsLogin()) {
             Follow.addClass("disable");
         } else {
-            
+            //获取是否关注该作者
+
         }
     })
 
