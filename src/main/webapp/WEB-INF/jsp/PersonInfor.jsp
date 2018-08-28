@@ -50,7 +50,7 @@
     <div class="col-md-5">
         <!--用户信息框-->
         <div class="jumbotron">
-            <h1 class="display-4">DBooker</h1>
+            <h1 class="display-4">DBookerI</h1>
             <p class="lead">这个用户的详细信息
                 <button id="P_Follow" type="button" class="btn btn-outline-primary float-right">关注这个用户</button>
             </p>
@@ -138,7 +138,14 @@
 
     // 关注按钮事件
     function FollowClick() {
+        if(Follow.text() == "取消关注"){
 
+        }else {
+            $.get("/Follow/addFollow",{
+                "userId":getUserIdInCookie(),
+                "authorName":$("#P_UserName").text()
+            })
+        }
     }
 </script>
 <%@ include file="Footer.jsp" %>
