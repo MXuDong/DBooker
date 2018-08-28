@@ -52,14 +52,14 @@
         <div class="jumbotron">
             <h1 class="display-4">DBookerI</h1>
             <p class="lead">这个用户的详细信息
-                <button id="P_Follow" type="button" class="btn btn-outline-primary float-right">关注这个用户</button>
+                <button id="P_Follow" type="button" class="btn btn-outline-primary float-right" onclick="FollowClick()">关注这个用户</button>
             </p>
 
             <table class="table">
                 <tr>
                     <td><p class="lead">用户名</p></td>
                     <td>:</td>
-                    <td><p class="lead" id="P_UserName">${requestScope.userName} </p></td>
+                    <td><p class="lead" id="P_UserName">${requestScope.userName}</p></td>
                 </tr>
                 <tr>
                     <td><p class="lead">用户性别</p></td>
@@ -116,7 +116,7 @@
                     "authorName": $("#P_UserName").text()
                 },
                 function (data) {
-                    if(data.ResInt == 1){
+                    if(data.resInt == 1){
                         // 后台发现关注记录
                         Follow.text("取消关注");
                     }else {
