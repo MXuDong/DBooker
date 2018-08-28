@@ -89,7 +89,7 @@
                 <tr>
                     <td><p class="lead">QQ</p></td>
                     <td>:</td>
-                    <td><p class="lead" id="P_" UserQQ>${requestScope.userQQ}</p></td>
+                    <td><p class="lead" id="P_UserQQ">${requestScope.userQQ}</p></td>
                 </tr>
                 <tr>
                     <td><p class="lead">邮箱</p></td>
@@ -107,17 +107,30 @@
 
     $(document).ready(function () {
         if (!checkIsLogin()) {
-            Follow.addClass("disable");
+            Follow.addClass("disabled");
         } else {
             //获取是否关注该作者
-
+            $.get("/Follow/isUserFollowAuthor",
+                {
+                    "userId": getUserIdInCookie(),
+                    "authorName": $("#P_UserName").text()
+                },
+                function (data) {
+                    if(data.ResInt == 1){
+                        // 后台发现关注记录
+                        Follow.text("取消关注");
+                    }else {
+                        // 后台没有发现关注记录
+                        Follow.text("关注这个用户");
+                    }
+                }, "json");
         }
     })
 
     //跳转至博客详情页
-    function turnToDbInforById(data){
+    function turnToDbInforById(data) {
         var header = "";
-        for(var i = 1; i < data.length; i++){
+        for (var i = 1; i < data.length; i++) {
             header = header + data[i];
         }
         turnToBookerInfo(header);

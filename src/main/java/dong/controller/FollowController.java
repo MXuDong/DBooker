@@ -2,10 +2,13 @@ package dong.controller;
 
 import dong.model.DefaultClass;
 import dong.model.Follow;
+import dong.model.User;
 import dong.service.Interface.FollowService;
+import dong.service.Interface.UserServiceI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -16,18 +19,20 @@ public class FollowController {
 
     @Autowired
     FollowService followService;
+    @Autowired
+    UserServiceI userServiceI;
 
 //    判断是否有为用户关注了某位用户
-    @RequestMapping("/isUserFollowAuthor")
+    @RequestMapping(value = "/isUserFollowAuthor", method = RequestMethod.GET)
     @ResponseBody
-    public DefaultClass isUserFollowAuthor(String userId, String authorId){
+    public DefaultClass isUserFollowAuthor(String userId, String authorName){
         DefaultClass defaultClass = new DefaultClass();
         defaultClass.setResInt(0);
         List<Follow> follows = followService.findAllByFollowUser(Integer.parseInt(userId));
         for(Follow f : follows){
-            if(f.getBeFollowUserId().equals(authorId)){
+            User author = userServiceI.findUserByUserName(authorName);
+            if(author.getUserId() == f.getBeFollowUserId()){
                 defaultClass.setResInt(1);
-                break;
             }
         }
 
