@@ -5,7 +5,6 @@ import dong.model.Follow;
 import dong.model.User;
 import dong.service.Interface.FollowService;
 import dong.service.Interface.UserServiceI;
-import org.graalvm.compiler.lir.LIRInstruction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,11 +48,24 @@ public class FollowController {
         follow.setUserId(Integer.parseInt(userId));
         follow.setBeFollowUserId(author.getUserId());
         followService.createFollow(follow);
-        DefaultClass defaultClass = new DefaultClass();
-        defaultClass.setResInt(1);
-        return defaultClass;
+        return new DefaultClass();
     }
 //    取消一位用户的关注
+    @RequestMapping(value = "/removeFollow", method = RequestMethod.GET)
+    @ResponseBody
+    public DefaultClass removeFollow(String userId, String authorName){
+        List<Follow> follows = followService.findAllByFollowUser(Integer.parseInt(userId));
+        User author = userServiceI.findUserByUserName(authorName);
+        for(Follow f : follows){
+            if(f.getBeFollowUserId() == author.getUserId()){
+                followService.deleteFollow(f.getFollowId());
+                break;
+            }
+        }
+
+        return new DefaultClass();
+    }
+
 
 //    获取一位用户的关注列表
 }

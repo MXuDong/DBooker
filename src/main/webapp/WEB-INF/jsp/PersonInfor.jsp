@@ -139,12 +139,17 @@
     // 关注按钮事件
     function FollowClick() {
         if(Follow.text() == "取消关注"){
-
+            $.get("/Follow/removeFollow",{
+                "userId":getUserIdInCookie(),
+                "authorName":$("#P_UserName").text()
+            });
+            Follow.text("关注这个用户");
         }else {
             $.get("/Follow/addFollow",{
                 "userId":getUserIdInCookie(),
                 "authorName":$("#P_UserName").text()
-            })
+            });
+            Follow.text("取消关注");
         }
     }
 </script>
