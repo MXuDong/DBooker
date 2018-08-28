@@ -5,6 +5,7 @@ import dong.model.Follow;
 import dong.model.User;
 import dong.service.Interface.FollowService;
 import dong.service.Interface.UserServiceI;
+import org.graalvm.compiler.lir.LIRInstruction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,7 +41,18 @@ public class FollowController {
     }
 
 //    添加一位用户的关注
-
+    @RequestMapping(value = "/addFollow", method = RequestMethod.GET)
+    @ResponseBody
+    public DefaultClass addFollow(String userId, String authorName){
+        User author = userServiceI.findUserByUserName(authorName);
+        Follow follow = new Follow();
+        follow.setUserId(Integer.parseInt(userId));
+        follow.setBeFollowUserId(author.getUserId());
+        followService.createFollow(follow);
+        DefaultClass defaultClass = new DefaultClass();
+        defaultClass.setResInt(1);
+        return defaultClass;
+    }
 //    取消一位用户的关注
 
 //    获取一位用户的关注列表
