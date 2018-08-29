@@ -95,6 +95,43 @@ public class defaultController {
         return modelAndView;
     }
 
+//    跳转到用户详情页
+    @RequestMapping("userInfor")
+    public ModelAndView turnUserInfo(String userId){
+        ModelAndView modelAndView = getModelAndView("UserInfor");
+
+        User user = userServiceI.findUserById(Integer.parseInt(userId));
+        modelAndView.addObject("userName",user.getUserName());
+        modelAndView.addObject("userSex",user.getUserSex());
+        modelAndView.addObject("userTrueName",user.getUserTrueName());
+        modelAndView.addObject("userSign",user.getUserSign());
+        modelAndView.addObject("userDisc",user.getUserDisc());
+//        获取联系方式
+        Connection connection = userServiceI.findConnectionByUser(user);
+        String userQQ;
+        String userPhone;
+        String userEmail;
+        if(connection == null){
+            userQQ = "您没有填写联系方式";
+            userPhone = "您没有填写联系方式";
+            userEmail = "您没有填写联系方式";
+        }else{
+            userPhone = connection.getPhoneNumber();
+            userQQ = connection.getQqNumber();
+            userEmail = connection.getEmail();
+        }
+        modelAndView.addObject("userPhone", userPhone);
+        modelAndView.addObject("userQQ", userQQ);
+        modelAndView.addObject("userEmail", userEmail);
+
+//        获取bookers
+        List<Bookers> bookers = bookerService.findBookersByUserId(user.getUserId());
+
+        modelAndView.addObject("bookersList", bookers);
+
+        return modelAndView;
+    }
+
 //    MAV 生成工具
     public ModelAndView getModelAndView(String MAVName){
         ModelAndView modelAndView = new ModelAndView();
