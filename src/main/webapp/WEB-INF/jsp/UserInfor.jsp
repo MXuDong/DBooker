@@ -34,25 +34,12 @@
 
         </div>
     </div>
-    <!--信息显示区-->
-    <!--
-    用户信息
-    1:用户名
-    2:用户性别
-    3:用户真实姓名
-    4:用户签名
-    5:用户描述
-    详细信息:
-    6:用户电话
-    7:qq号码
-    8:电子邮箱
-    -->
     <div class="col-md-5">
         <!--用户信息框-->
         <div class="jumbotron">
             <h1 class="display-4">DBookerI</h1>
             <p class="lead">我的详细信息
-                <button id="P_Follow" type="button" class="btn btn-outline-primary float-right" onclick="FollowClick()">修改</button>
+                <button id="P_Follow" type="button" class="btn btn-outline-primary float-right" onclick="">修改</button>
             </p>
 
             <table class="table">
@@ -64,37 +51,37 @@
                 <tr>
                     <td><p class="lead">用户性别</p></td>
                     <td>:</td>
-                    <td><p class="lead" id="P_UserSex"></p>${requestScope.userSex}</td>
+                    <td><input class="form-control" value="${requestScope.userSeinput}" id="P_UserSex"></input></td>
                 </tr>
                 <tr>
                     <td><p class="lead">用户真实姓名</p></td>
                     <td>:</td>
-                    <td><p class="lead" id="P_TrueName">${requestScope.userTrueName}</p></td>
+                    <td><input class="form-control" value="${requestScope.userTrueName}" id="P_TrueName"></input></td>
                 </tr>
                 <tr>
                     <td><p class="lead">用户签名</p></td>
                     <td>:</td>
-                    <td><p class="lead" id="P_UserSign">${requestScope.userSign}</p></td>
+                    <td><input class="form-control" value="${requestScope.userSign}" id="P_UserSign"></input></td>
                 </tr>
                 <tr>
                     <td><p class="lead">用户自述</p></td>
                     <td>:</td>
-                    <td><p class="lead" id="P_UserDisc">${requestScope.userDisc}</p></td>
+                    <td><input class="form-control" value="${requestScope.userDisc}" id="P_UserDisc"></input></td>
                 </tr>
                 <tr>
                     <td><p class="lead">联系电话</p></td>
                     <td>:</td>
-                    <td><p class="lead" id="P_UserPhone">${requestScope.userPhone}</p></td>
+                    <td><input class="form-control" value="${requestScope.userPhone}" id="P_UserPhone"></input></td>
                 </tr>
                 <tr>
                     <td><p class="lead">QQ</p></td>
                     <td>:</td>
-                    <td><p class="lead" id="P_UserQQ">${requestScope.userQQ}</p></td>
+                    <td><input class="form-control" value="${requestScope.userQQ}" id="P_UserQQ"></input></td>
                 </tr>
                 <tr>
                     <td><p class="lead">邮箱</p></td>
                     <td>:</td>
-                    <td><p class="lead" id="P_UserEmail">${requestScope.userEmail}</p></td>
+                    <td><input class="form-control" value="${requestScope.userEmail}" id="P_UserEmail"></input></td>
                 </tr>
             </table>
         </div>
@@ -136,21 +123,5 @@
         turnToBookerInfo(header);
     }
 
-    // 关注按钮事件
-    function FollowClick() {
-        if(Follow.text() == "取消关注"){
-            $.get("/Follow/removeFollow",{
-                "userId":getUserIdInCookie(),
-                "authorName":$("#P_UserName").text()
-            });
-            Follow.text("关注这个用户");
-        }else {
-            $.get("/Follow/addFollow",{
-                "userId":getUserIdInCookie(),
-                "authorName":$("#P_UserName").text()
-            });
-            Follow.text("取消关注");
-        }
-    }
 </script>
 <%@ include file="Footer.jsp" %>
