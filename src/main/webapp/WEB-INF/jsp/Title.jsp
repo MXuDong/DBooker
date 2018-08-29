@@ -20,7 +20,7 @@
             <a id="navbar_myDb" href="#" class="nav-item nav-link">我的DB空间</a>
             <a id="navbar_myFollow" href="#" class="nav-item nav-link">我的关注</a>
             <a id="navbar_myCare" href="#" class="nav-item nav-link">我的收藏</a>
-            <a id="navbar_myInfo" href="#" class="nav-item nav-link">个人信息</a>
+            <a id="navbar_myInfo" href="#" class="nav-item nav-link" onclick="navbar_myInfo_Onclick()">个人信息</a>
             <a id="navbar_LR" href="#" class="nav-item nav-link" onclick="NAVBAR_LR_Fun()"></a>
         </div>
     </div>
@@ -90,5 +90,9 @@
     //查找信息调用的函数
     function NAVBAR_SearchButton() {
         var searchInfo = $("#SearchInfo").val();
+    }
+
+    function navbar_myInfo_Onclick() {
+        window.location = "/userInfor?userId=" + getUserIdInCookie();
     }
 </script>
