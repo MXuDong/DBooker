@@ -112,9 +112,9 @@ public class defaultController {
         String userPhone;
         String userEmail;
         if(connection == null){
-            userQQ = "您没有填写联系方式";
-            userPhone = "您没有填写联系方式";
-            userEmail = "您没有填写联系方式";
+            userQQ = "";
+            userPhone = "";
+            userEmail = "";
         }else{
             userPhone = connection.getPhoneNumber();
             userQQ = connection.getQqNumber();
