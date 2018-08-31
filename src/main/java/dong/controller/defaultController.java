@@ -50,6 +50,12 @@ public class defaultController {
         return getModelAndView(MAVName);
     }
 
+    @RequestMapping(value = "/newBooker")
+    public ModelAndView turnNewBooker(){
+        String MAVName = "NewBooker";
+        return getModelAndView(MAVName);
+    }
+
 //    博客信息详情页
     @RequestMapping(value = "bookerInfo")
     public ModelAndView turnBookerInfo(){
