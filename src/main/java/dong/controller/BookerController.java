@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.awt.print.Book;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class BookerController {
     @Autowired
     UserServiceI userServiceI;
 
-    @RequestMapping(value = "getUserBookerCount", method = RequestMethod.GET)
+    @RequestMapping(value = "/getUserBookerCount", method = RequestMethod.GET)
     @ResponseBody
     public DefaultClass getUserBookerCount(String userId) {
         int res = bookerService.getBookerCount(Integer.parseInt(userId));
@@ -34,7 +35,7 @@ public class BookerController {
         return defaultClass;
     }
 
-    @RequestMapping(value = "getUserBookers", method = RequestMethod.GET)
+    @RequestMapping(value = "/getUserBookers", method = RequestMethod.GET)
     @ResponseBody
     //getStatus : 获取全部还是部份， <0 为全部，>0 为获取部份
     //返回的数据只包含 标题 、 作者 、 BookerID
@@ -55,7 +56,7 @@ public class BookerController {
         return res;
     }
 
-    @RequestMapping(value = "getMainBookers", method = RequestMethod.GET)
+    @RequestMapping(value = "/getMainBookers", method = RequestMethod.GET)
     @ResponseBody
     public List<Bookers> getIndexMainBooker(String flagId){
         int status = Integer.parseInt(flagId);
@@ -86,5 +87,31 @@ public class BookerController {
             if(res.getBookerHead().equals(BookerHeader)) return res;
         }
         return null;
+    }
+
+    @RequestMapping(value = "/createNewBooker", method = RequestMethod.GET)
+    @ResponseBody
+    public DefaultClass createNewBooker(String userId, String bookerHeader, String bookerInfo){
+        DefaultClass defaultClass = new DefaultClass();
+        defaultClass.setResInt(1);
+
+        Bookers bookers = new Bookers();
+        bookers.setBookerInfo(bookerInfo);
+        bookers.setBookerHead(bookerHeader);
+        bookers.setUserId(Integer.parseInt(userId));
+        bookers.setCreateTime(new Date());
+
+        List<Bookers> list = bookerService.findAll();
+
+        for(Bookers b : list){
+            if(b.getBookerHead(). equals(bookerHeader)){
+                defaultClass.setResInt(0);
+                return defaultClass;
+            }
+        }
+
+        bookerService.createBooker(bookers);
+
+        return defaultClass;
     }
 }
