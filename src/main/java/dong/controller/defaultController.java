@@ -1,11 +1,9 @@
 package dong.controller;
 
-import dong.model.Bookers;
-import dong.model.Care;
-import dong.model.Connection;
-import dong.model.User;
+import dong.model.*;
 import dong.service.Interface.BookerService;
 import dong.service.Interface.CareService;
+import dong.service.Interface.FollowService;
 import dong.service.Interface.UserServiceI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +24,8 @@ public class defaultController {
     BookerService bookerService;
     @Autowired
     CareService careService;
+    @Autowired
+    FollowService followService;
 
 //    首页
     @RequestMapping(value = {"", "index"})
@@ -160,6 +160,24 @@ public class defaultController {
 
         User user = userServiceI.findUserById(Integer.parseInt(userId));
         modelAndView.addObject("userName", user.getUserName());
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/userFollow")
+    public ModelAndView turnUserFollow(String userId){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("UserFollow");
+
+        List<Follow> follows = followService.findAllByFollowUser(Integer.parseInt(userId));
+        List<User> users = new ArrayList<User>();
+
+        for(Follow f : follows){
+            User user = userServiceI.findUserById(f.getBeFollowUserId());
+            users.add(user);
+        }
+
+        modelAndView.addObject("userList", users);
 
         return modelAndView;
     }

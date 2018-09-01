@@ -18,7 +18,7 @@
             <a id="navbar_about" href="/about" class="nav-item nav-link active">关于</a>
             <a id="navbar_newBooker" href="#" class="nav-item nav-link" onclick="NAVBAR_NEWBOOKER_onclick()">创建新博客</a>
             <%--<a id="navbar_myDb" href="#" class="nav-item nav-link">我的DB空间</a>--%>
-            <a id="navbar_myFollow" href="#" class="nav-item nav-link" >我的关注</a>
+            <a id="navbar_myFollow" href="#" class="nav-item nav-link" onclick="NAVBAR_MYFOLLOW_Onclick()">我的关注</a>
             <a id="navbar_myCare" href="#" class="nav-item nav-link" onclick="NAVBAR_MYCARE_Onclick()">我的收藏</a>
             <a id="navbar_myInfo" href="#" class="nav-item nav-link" onclick="navbar_myInfo_Onclick()">个人信息</a>
             <a id="navbar_LR" href="#" class="nav-item nav-link" onclick="NAVBAR_LR_Fun()"></a>
@@ -112,5 +112,12 @@
             return;
         }
         window.location = "/userCare?userId=" + getUserIdInCookie();
+    }
+
+    function NAVBAR_MYFOLLOW_Onclick() {
+        if(NAVBAR_MYFOLLOW.hasClass("disabled")){
+            return;
+        }
+        window.location = "/userFollow?userId=" + getUserIdInCookie();
     }
 </script>

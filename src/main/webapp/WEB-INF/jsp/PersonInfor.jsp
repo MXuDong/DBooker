@@ -12,9 +12,8 @@
             <h1 class="display-4">Bookers</h1>
             <hr class="my-4">
 
-            <%--博客链接--%>
+            <%--作者链接--%>
             <c:forEach items="${requestScope.bookersList}" var="booker">
-
                 <a href="#" id="_${booker.bookerHead}" onclick="turnToDbInforById(this.id)"
                    class="list-group-item list-group-item-action flex-column align-items-start border border-warning rounded-left">
                     <div class="d-flex w-100 justify-content-between">

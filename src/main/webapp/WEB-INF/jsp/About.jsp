@@ -197,6 +197,7 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
                         <h5>本产品主要基于SSM(Spring + SpringMVC + MyBatis)框架整合发开</h5>
+                        <h5>富文本编辑器使用 wangEditor, JS 插件</h5>
                     </div>
                     <div class="col-md-1"></div>
                 </div>
