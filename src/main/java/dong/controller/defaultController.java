@@ -1,9 +1,11 @@
 package dong.controller;
 
 import dong.model.Bookers;
+import dong.model.Care;
 import dong.model.Connection;
 import dong.model.User;
 import dong.service.Interface.BookerService;
+import dong.service.Interface.CareService;
 import dong.service.Interface.UserServiceI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.jws.WebParam;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -21,6 +24,8 @@ public class defaultController {
     UserServiceI userServiceI;
     @Autowired
     BookerService bookerService;
+    @Autowired
+    CareService careService;
 
 //    首页
     @RequestMapping(value = {"", "index"})
@@ -134,6 +139,27 @@ public class defaultController {
         List<Bookers> bookers = bookerService.findBookersByUserId(user.getUserId());
 
         modelAndView.addObject("bookersList", bookers);
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/userCare")
+    public ModelAndView myCareBooker(String userId){
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("UserCare");
+
+        List<Care> cares = careService.findAllCaresByUserId(Integer.parseInt(userId));
+        List<Bookers> bookers = new ArrayList<Bookers>();
+        for(Care c : cares){
+            Bookers booker = bookerService.findBookerById(c.getBookerId());
+            bookers.add(booker);
+        }
+
+        modelAndView.addObject("bookersList", bookers);
+
+        User user = userServiceI.findUserById(Integer.parseInt(userId));
+        modelAndView.addObject("userName", user.getUserName());
 
         return modelAndView;
     }

@@ -41,7 +41,7 @@ public class CareController {
         }
 
         for(Care c : list){
-            if(booker.getBookerHead().equals(bookerHeader)){
+            if(c.getBookerId().equals(booker.getBookerId())){
                 defaultClass.setResInt(1);
                 break;
             }

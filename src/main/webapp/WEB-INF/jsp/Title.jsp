@@ -18,8 +18,8 @@
             <a id="navbar_about" href="/about" class="nav-item nav-link active">关于</a>
             <a id="navbar_newBooker" href="#" class="nav-item nav-link" onclick="NAVBAR_NEWBOOKER_onclick()">创建新博客</a>
             <%--<a id="navbar_myDb" href="#" class="nav-item nav-link">我的DB空间</a>--%>
-            <a id="navbar_myFollow" href="#" class="nav-item nav-link">我的关注</a>
-            <a id="navbar_myCare" href="#" class="nav-item nav-link">我的收藏</a>
+            <a id="navbar_myFollow" href="#" class="nav-item nav-link" >我的关注</a>
+            <a id="navbar_myCare" href="#" class="nav-item nav-link" onclick="NAVBAR_MYCARE_Onclick()">我的收藏</a>
             <a id="navbar_myInfo" href="#" class="nav-item nav-link" onclick="navbar_myInfo_Onclick()">个人信息</a>
             <a id="navbar_LR" href="#" class="nav-item nav-link" onclick="NAVBAR_LR_Fun()"></a>
         </div>
@@ -93,10 +93,24 @@
     }
 
     function navbar_myInfo_Onclick() {
+        NAVBAR_MYINFO
+        if(NAVBAR_MYINFO.hasClass("disabled")){
+            return;
+        }
         window.location = "/userInfor?userId=" + getUserIdInCookie();
     }
 
     function NAVBAR_NEWBOOKER_onclick(){
+        if(NAVBAR_NEWBOOKER.hasClass("disabled")){
+            return;
+        }
         window.location = "/newBooker";
+    }
+
+    function NAVBAR_MYCARE_Onclick() {
+        if(NAVBAR_MYCARE.hasClass("disabled")){
+            return;
+        }
+        window.location = "/userCare?userId=" + getUserIdInCookie();
     }
 </script>
